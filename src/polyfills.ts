@@ -78,3 +78,7 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+ // Shimming it... As seen here: https://stackoverflow.com/questions/50209019/angular-6-auth0-global-not-defined
+ // Add global to window, assigning the value of window itself.
+ (window as any).global = window;
