@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, HostListener } from '@angular/core';
 import * as Plotly from 'plotly.js';
 
 @Component({
@@ -6,11 +6,21 @@ import * as Plotly from 'plotly.js';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
   title = 'Life Map';
 
-  ngOnInit() {
+  @HostListener('window:resize') onResize() { this.resize(); }
+  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event) { this.resize(); }
+
+  ngAfterViewInit() {
     this.main();
+  }
+
+  private resize() {
+    const map = document.getElementById('map');
+    if (map) {
+      Plotly.Plots.resize(map);
+    }
   }
 
   main() {
