@@ -7,7 +7,7 @@ import * as Plotly from 'plotly.js';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'CV Generator Life Map';
+  title = 'Life Map';
 
   ngOnInit() {
     this.main();
