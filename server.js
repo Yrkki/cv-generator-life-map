@@ -20,13 +20,15 @@ app.get('*', function (req, res, next) {
         next()
 });
 
+const distName = __dirname + '/dist';
+
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname));
+app.use(express.static(distName));
 
 // Configure Express Rewrites
 app.all('/*', function (req, res, next) {
     // Just send the index.html for other files to support HTML5Mode
-    res.sendFile('index.html', { root: __dirname });
+    res.sendFile('index.html', { root: distName });
 });
 
 // Start the app by listening on the default Heroku port
