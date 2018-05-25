@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const compression = require('compression');
+const pjson = require('./package.json');
 
 // compress responses
 app.use(compression());
@@ -20,16 +21,10 @@ app.get('*', function (req, res, next) {
         next()
 });
 
-const distName = __dirname + '/dist';
+const distName = __dirname + '/dist/' + pjson.name;
 
 // Serve only the static files form the dist directory
 app.use(express.static(distName));
-
-// Configure Express Rewrites
-app.all('/*', function (req, res, next) {
-    // Just send the index.html for other files to support HTML5Mode
-    res.sendFile('index.html', { root: distName });
-});
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 5000);
