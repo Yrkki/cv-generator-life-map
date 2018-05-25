@@ -34,31 +34,65 @@ export class AppComponent implements OnInit {
           ],
           colorbar: {
             // title: 'Projects',
-            thickness: 20
+            thickness: 20,
+            tick0: 0,
+            dtick: 1,
+            autotick: false
           },
           marker: {
             line: {
-              color: 'rgb(220,220,220)',
+              color: 'rgba(0,0,0,0.5)',
               width: 1
             }
           },
-          margin: {
-            t: 0, // top margin
-            l: 0, // left margin
-            r: 0, // right margin
-            b: 0 // bottom margin
-          }
+          opacity: 1,
+        // margin: {
+        //   t: 0, // top margin
+        //   l: 0, // left margin
+        //   r: 0, // right margin
+        //   b: 0 // bottom margin
+        // }
         }];
 
         const layout = {
-          // title: 'Countries',
+          title: 'Markets',
           geo: {
+            scope: 'world',
+            resolution: 50,
+
             projection: {
-              type: 'robinson'
+              type: 'robinson',
+              scale: 4.5
             },
-            scope: 'europe',
+            center: {
+              lon: 35,
+              lat: 52
+            },
+
+            bgcolor: 'rgba(0,0,0,0)',
+
+            showocean: true,
+            oceancolor: 'rgba(0,255,255,0.2)',
+            showland: false,
+            landcolor: 'rgba(0,0,0,0.2)',
             showlakes: true,
-            lakecolor: 'rgb(209,247,255)'
+            lakecolor: 'rgba(0,128,255,0.2)',
+            showrivers: true,
+            rivercolor: 'rgba(0,0,255,0.2)',
+            showcountries: true,
+            countrycolor: 'rgba(128,128,128,0.2)',
+            showcoastlines: true,
+            coastlinecolor: 'rgba(0,0,0,0.2)',
+            showframe: true,
+            framecolor: 'rgba(0,0,0,0.2)',
+          },
+          paper_bgcolor: 'rgba(0,0,0,0)',
+          plot_bgcolor: 'rgba(0,0,0,0)',
+          margin: {
+            t: 0,
+            l: 0,
+            r: 0,
+            b: 0
           }
         };
 
