@@ -8,6 +8,7 @@
     "build": "ng build",
     "buildprod": "ng build --prod",
     "buildfast": "ng build --stats-json --source-map=false",
+    "heroku-postbuild": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
