@@ -25,11 +25,8 @@ export class AppComponent implements AfterViewInit {
 
   main() {
     Plotly.d3.csv('../assets/countries.csv',
-      function (err, rows) {
-        // tslint:disable-next-line:no-shadowed-variable
-        function unpack(rows, key) {
-          return rows.map(function (row) { return row[key]; });
-        }
+      (err, rows) => {
+        const unpack = (_, key) => _.map((row) => row[key]);
 
         const data = [{
           type: 'choropleth',
