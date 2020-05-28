@@ -8,13 +8,12 @@
     "build": "ng build",
     "buildprod": "ng build --prod",
     "buildfast": "ng build --stats-json --source-map=false",
-    "postinstall": "npm run build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
-  "dependencies": { 
+  "dependencies": {
     "@angular/animations": "^9.1.9",
     "@angular/common": "^9.1.9",
     "@angular/compiler": "^9.1.9",
@@ -23,7 +22,8 @@
     "@angular/platform-browser": "^9.1.9",
     "@angular/platform-browser-dynamic": "^9.1.9",
     "@angular/router": "^9.1.9",
-    "express": "4.16.3",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
     "plotly.js": "^1.54.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
