@@ -8,6 +8,12 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Global variables available in only node environment -->
+  <!-- As seen here: https://stackoverflow.com/questions/50356408/upgrading-to-angular-6-x-gives-uncaught-referenceerror-global-is-not-defined -->
+  <script>
+    var global = global || window;
+  </script>
 
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -15,9 +21,6 @@
 
 <body>
   <app-root></app-root>
-
-  <!-- Plotly.js -->
-  <script src="map.js"></script>
 </body>
 
 </html>

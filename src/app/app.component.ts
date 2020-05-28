@@ -4,7 +4,7 @@ import * as Plotly from 'plotly.js';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
   title = 'Life Map';
@@ -56,12 +56,12 @@ export class AppComponent implements AfterViewInit {
             }
           },
           opacity: 1,
-        // margin: {
-        //   t: 0, // top margin
-        //   l: 0, // left margin
-        //   r: 0, // right margin
-        //   b: 0 // bottom margin
-        // }
+          // margin: {
+          //   t: 0, // top margin
+          //   l: 0, // left margin
+          //   r: 0, // right margin
+          //   b: 0 // bottom margin
+          // }
         }];
 
         const layout = {
