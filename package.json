@@ -11,7 +11,9 @@
     "heroku-postbuild": "npm run buildprod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -29,7 +31,8 @@
     "plotly.js": "^1.54.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "snyk": "^1.332.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.901.7",
@@ -54,5 +57,6 @@
   "engines": {
     "node": "12.16.3",
     "npm": "6.14.4"
-  }
+  },
+  "snyk": true
 }
