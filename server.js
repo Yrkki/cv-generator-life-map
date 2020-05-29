@@ -1,3 +1,5 @@
+require('newrelic');
+
 //Install express server
 const express = require('express');
 const app = express();

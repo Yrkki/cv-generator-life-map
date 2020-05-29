@@ -25,6 +25,7 @@
     "@angular/router": "^9.1.9",
     "compression": "^1.7.4",
     "express": "^4.17.1",
+    "newrelic": "^6.8.0",
     "plotly.js": "^1.54.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
