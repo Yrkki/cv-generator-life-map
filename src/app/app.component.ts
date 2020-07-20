@@ -1,5 +1,10 @@
 import { Component, AfterViewInit, HostListener } from '@angular/core';
-import * as Plotly from 'plotly.js';
+
+/** The global this object */
+const global = globalThis;
+
+/** The global Plotly object */
+const Plotly = global.Plotly;
 
 @Component({
   selector: 'app-root',
