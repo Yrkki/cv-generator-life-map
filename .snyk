@@ -19,21 +19,12 @@ ignore:
     - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
         reason: None given
         expires: '2020-07-04T07:05:37.771Z'
-      plotly.js > ndarray-fill > cwise > static-module > static-eval:
-        reason: None given
-        expires: '2020-07-04T11:42:09.660Z'
     - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
         reason: None given
         expires: '2020-07-04T07:05:37.773Z'
-      plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
-        reason: None given
-        expires: '2020-07-04T11:42:09.660Z'
     - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
         reason: No patch available
         expires: '2020-07-04T07:05:37.773Z'
-      plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
-        reason: None given
-        expires: '2020-07-04T11:42:09.660Z'
     - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
         reason: None given
         expires: '2020-07-04T11:42:09.661Z'
@@ -46,13 +37,19 @@ ignore:
     - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
         reason: None given
         expires: '2020-07-04T08:05:02.161Z'
+    - plotly.js > ndarray-fill > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2020-07-04T11:42:09.660Z'
+    - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2020-07-04T11:42:09.660Z'
+    - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2020-07-04T11:42:09.660Z'
   SNYK-JS-MINIMIST-559764:
     - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > quote-stream > minimist:
         reason: None given
         expires: '2020-07-04T07:05:37.770Z'
-      plotly.js > ndarray-fill > cwise > static-module > quote-stream > minimist:
-        reason: None given
-        expires: '2020-07-04T11:42:09.659Z'
     - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > quote-stream > minimist:
         reason: None given
         expires: '2020-07-04T11:42:09.659Z'
@@ -65,6 +62,22 @@ ignore:
     - plotly.js > ndarray-fill > cwise > static-module > quote-stream > minimist:
         reason: None given
         expires: '2020-07-04T08:05:02.160Z'
+    - plotly.js > ndarray-fill > cwise > static-module > quote-stream > minimist:
+        reason: None given
+        expires: '2020-07-04T11:42:09.659Z'
+  SNYK-JS-AJV-584908:
+    - '@angular/pwa > @angular-devkit/core > ajv':
+        reason: no patch available
+        expires: '2020-08-19T11:08:17.873Z'
+    - '@angular/pwa > @angular-devkit/schematics > @angular-devkit/core > ajv':
+        reason: no patch available
+        expires: '2020-08-19T11:08:17.873Z'
+    - '@angular/pwa > @schematics/angular > @angular-devkit/core > ajv':
+        reason: no patch available
+        expires: '2020-08-19T11:08:17.873Z'
+    - '@angular/pwa > @schematics/angular > @angular-devkit/schematics > @angular-devkit/core > ajv':
+        reason: no patch available
+        expires: '2020-08-19T11:08:17.873Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   SNYK-JS-LODASH-567746:

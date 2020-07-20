@@ -1,6 +1,13 @@
 {
   "name": "cv-generator-life-map",
-  "version": "1.1.0",
+  "version": "1.1.1",
+  "description": "CV generator life map frontend",
+  "keywords": [
+    "CV generator"
+  ],
+  "author": "Georgi Marinov",
+  "homepage": "https://yrkki.github.io/cv-generator-life-map/",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
@@ -15,48 +22,119 @@
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
-  "private": true,
+  "main": "src/main.ts",
+  "private": false,
+  "release": {
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "angular",
+          "parserOpts": {
+            "noteKeywords": [
+              "BREAKING CHANGE",
+              "BREAKING CHANGES",
+              "BREAKING"
+            ]
+          }
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "angular",
+          "parserOpts": {
+            "noteKeywords": [
+              "BREAKING CHANGE",
+              "BREAKING CHANGES",
+              "BREAKING"
+            ]
+          },
+          "writerOpts": {
+            "commitsSort": [
+              "scope",
+              "subject"
+            ]
+          }
+        }
+      ],
+      "@semantic-release/npm",
+      {
+        "npmPublish": false
+      },
+      "@semantic-release/changelog",
+      "@semantic-release/git"
+    ],
+    "branch": "master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yrkki/cv-generator-life-map.git"
+  },
   "dependencies": {
-    "@angular/animations": "^9.1.9",
-    "@angular/common": "^9.1.9",
-    "@angular/compiler": "^9.1.9",
-    "@angular/core": "^9.1.9",
-    "@angular/forms": "^9.1.9",
-    "@angular/platform-browser": "^9.1.9",
-    "@angular/platform-browser-dynamic": "^9.1.9",
-    "@angular/router": "^9.1.9",
-    "compression": "^1.7.4",
-    "express": "^4.17.1",
-    "newrelic": "^6.8.0",
-    "plotly.js": "^1.54.1",
-    "rxjs": "~6.5.5",
-    "snyk": "^1.336.0",
+    "@angular/animations": "^10.0.4",
+    "@angular/common": "^10.0.4",
+    "@angular/compiler": "10.0.4",
+    "@angular/core": "^10.0.4",
+    "@angular/forms": "^10.0.4",
+    "@angular/platform-browser": "^10.0.4",
+    "@angular/platform-browser-dynamic": "^10.0.4",
+    "@angular/platform-server": "^10.0.4",
+    "@angular/pwa": "^0.1000.3",
+    "@angular/router": "^10.0.4",
+    "@angular/service-worker": "^10.0.4",
+    "@tailorbrands/node-exporter-prometheus": "2.0.6",
+    "angular-plotly.js": "2.0.0",
+    "chart.js": "2.9.3",
+    "compression": "1.7.4",
+    "express": "4.17.1",
+    "rxjs": "^6.6.0",
+    "snyk": "1.362.1",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.3"
+    "tslint-angular": "3.0.2",
+    "zone.js": "^0.10.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.901.7",
-    "@angular/cli": "^9.1.7",
-    "@angular/compiler-cli": "^9.1.9",
-    "@types/jasmine": "~3.5.10",
-    "@types/jasminewd2": "~2.0.8",
-    "@types/node": "^14.0.10",
-    "codelyzer": "^5.2.2",
-    "jasmine-core": "~3.5.0",
-    "jasmine-spec-reporter": "~5.0.2",
-    "karma": "~5.0.9",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~3.0.3",
-    "karma-jasmine": "~3.3.1",
-    "karma-jasmine-html-reporter": "^1.5.4",
-    "protractor": "~7.0.0",
-    "ts-node": "~8.10.2",
-    "tslint": "~6.1.2",
-    "typescript": "~3.8.3"
+    "@angular-devkit/build-angular": "0.1000.3",
+    "@angular/cli": "^10.0.3",
+    "@angular/compiler-cli": "^10.0.4",
+    "@angular/language-service": "10.0.4",
+    "@compodoc/compodoc": "1.1.11",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/npm": "^7.0.5",
+    "@semantic-release/release-notes-generator": "^9.0.1",
+    "@types/chart.js": "2.9.23",
+    "@types/jasmine": "3.5.11",
+    "@types/jasminewd2": "2.0.8",
+    "@types/node": "14.0.23",
+    "auto-changelog": "2.2.0",
+    "codecov": "3.7.1",
+    "codelyzer": "^6.0.0",
+    "conventional-changelog-angular": "^5.0.10",
+    "coveralls": "3.1.0",
+    "enhanced-resolve": "4.3.0",
+    "jasmine-core": "3.5.0",
+    "jasmine-spec-reporter": "^5.0.2",
+    "karma": "5.1.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage-istanbul-reporter": "3.0.3",
+    "karma-htmlfile-reporter": "^0.3.8",
+    "karma-jasmine": "^3.3.1",
+    "karma-jasmine-html-reporter": "1.5.4",
+    "lighthouse": "6.1.1",
+    "node-sass": "4.14.1",
+    "npm-run-all": "4.1.5",
+    "protractor": "7.0.0",
+    "semantic-release": "^17.1.1",
+    "ts-node": "8.10.2",
+    "tslint": "6.1.2",
+    "typescript": "3.9.7"
   },
   "engines": {
-    "node": "14.3.0",
-    "npm": "6.14.5"
+    "node": "14.5.0",
+    "npm": "6.14.6"
   },
   "snyk": true
 }
