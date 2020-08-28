@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 // Connect Plotly
 import { CommonModule } from '@angular/common';
 import { PlotlyViaCDNModule } from 'angular-plotly.js';
-PlotlyViaCDNModule.plotlyVersion = 'latest';
-PlotlyViaCDNModule.plotlyBundle = 'geo';
+// PlotlyViaCDNModule.plotlyVersion = 'latest';
+// PlotlyViaCDNModule.plotlyBundle = 'geo';
 
 @NgModule({
   declarations: [
