@@ -81,7 +81,7 @@ ignore:
   SNYK-JS-HEROKUEXECUTIL-674661:
     - heroku > @heroku-cli/plugin-ps-exec > heroku-exec-util:
         reason: None given
-        expires: '2020-12-31T19:32:51.184Z'
+        expires: '2020-12-31T21:23:56.391Z'
   SNYK-JS-LODASH-590103:
     - snyk > snyk-python-plugin > snyk-poetry-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
         reason: None given
@@ -89,7 +89,11 @@ ignore:
   SNYK-JS-NODEFORGE-598677:
     - heroku > @heroku-cli/plugin-ps-exec > heroku-exec-util > node-forge:
         reason: None given
-        expires: '2020-12-31T19:32:51.187Z'
+        expires: '2020-12-31T21:23:56.409Z'
+  SNYK-JS-PATHVAL-596926:
+    - nock > chai > pathval:
+        reason: None given
+        expires: '2020-12-31T21:23:56.409Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   SNYK-JS-LODASH-567746:
