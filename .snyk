@@ -78,6 +78,18 @@ ignore:
     - '@angular/pwa > @schematics/angular > @angular-devkit/schematics > @angular-devkit/core > ajv':
         reason: no patch available
         expires: '2020-08-19T11:08:17.873Z'
+  SNYK-JS-HEROKUEXECUTIL-674661:
+    - heroku > @heroku-cli/plugin-ps-exec > heroku-exec-util:
+        reason: None given
+        expires: '2020-12-31T19:32:51.184Z'
+  SNYK-JS-LODASH-590103:
+    - snyk > snyk-python-plugin > snyk-poetry-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
+        reason: None given
+        expires: '2020-12-31T19:32:51.187Z'
+  SNYK-JS-NODEFORGE-598677:
+    - heroku > @heroku-cli/plugin-ps-exec > heroku-exec-util > node-forge:
+        reason: None given
+        expires: '2020-12-31T19:32:51.187Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   SNYK-JS-LODASH-567746:
