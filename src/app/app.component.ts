@@ -29,6 +29,10 @@ export class AppComponent implements AfterViewInit {
   }
 
   main() {
+    if (!Plotly) {
+      return;
+    }
+
     Plotly.d3.csv('../assets/countries.csv',
       (err, rows) => {
         const unpack = (_, key) => _.map((row) => row[key]);

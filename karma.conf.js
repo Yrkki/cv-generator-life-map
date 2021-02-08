@@ -9,18 +9,15 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
+      require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, './coverage/cv-generator-life-map'),
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
-    },
-    reporters: ['progress', 'kjhtml'],
+    coverageReporter: coverageIstanbulReporterConfig(),
+    reporters: ['progress', 'coverage', 'kjhtml'],
+    preprocessors: { 'src/**/*.ts': ['coverage'] },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -30,3 +27,18 @@ module.exports = function (config) {
     restartOnFileChange: true
   });
 };
+
+function coverageIstanbulReporterConfig() {
+  return {
+    type: 'text-summary',
+    dir: require('path').join(__dirname, './coverage'),
+    reports: ['html', 'lcovonly', 'text-summary'],
+    fixWebpackSourcePaths: true,
+    thresholds: {
+      statements: 90,
+      lines: 90,
+      branches: 60,
+      functions: 90
+    }
+  };
+}
