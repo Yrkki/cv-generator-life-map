@@ -78,10 +78,16 @@ ignore:
     - '@angular/pwa > @schematics/angular > @angular-devkit/schematics > @angular-devkit/core > ajv':
         reason: no patch available
         expires: '2020-08-19T11:08:17.873Z'
+    - ajv:
+        reason: None given
+        expires: '2021-03-09T18:17:45.041Z'
+    - eslint > ajv:
+        reason: None given
+        expires: '2021-03-09T18:17:45.041Z'
   SNYK-JS-HEROKUEXECUTIL-674661:
     - heroku > @heroku-cli/plugin-ps-exec > heroku-exec-util:
         reason: None given
-        expires: '2021-01-01T10:25:26.587Z'
+        expires: '2021-03-10T12:06:39.599Z'
   SNYK-JS-LODASH-590103:
     - snyk > snyk-python-plugin > snyk-poetry-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
         reason: None given
@@ -89,11 +95,128 @@ ignore:
   SNYK-JS-NODEFORGE-598677:
     - heroku > @heroku-cli/plugin-ps-exec > heroku-exec-util > node-forge:
         reason: None given
-        expires: '2021-01-01T10:25:26.587Z'
+        expires: '2021-03-10T12:06:39.599Z'
   SNYK-JS-PATHVAL-596926:
     - nock > chai > pathval:
         reason: None given
         expires: '2021-01-01T10:25:26.587Z'
+  SNYK-JS-GLOBPARENT-1016905:
+    - eslint > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.041Z'
+      '@oclif/command > @oclif/config > globby > fast-glob > glob-parent':
+        reason: None given
+        expires: '2021-03-10T12:06:39.598Z'
+    - '@oclif/command > @oclif/config > globby > fast-glob > glob-parent':
+        reason: None given
+        expires: '2021-03-09T18:17:45.041Z'
+      heroku > @heroku-cli/plugin-apps > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.598Z'
+    - heroku > @heroku-cli/plugin-apps > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.041Z'
+      heroku > @heroku-cli/plugin-pipelines > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.598Z'
+    - heroku > @heroku-cli/plugin-pipelines > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.041Z'
+      heroku > @heroku-cli/plugin-run > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.598Z'
+    - heroku > @heroku-cli/plugin-apps > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.041Z'
+      heroku > @heroku-cli/plugin-webhooks > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.598Z'
+    - heroku > @heroku-cli/plugin-pipelines > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.042Z'
+      heroku > @oclif/plugin-commands > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.598Z'
+    - heroku > @heroku-cli/plugin-run > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.042Z'
+      heroku > @oclif/plugin-plugins > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
+    - heroku > @heroku-cli/plugin-webhooks > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.042Z'
+      heroku > @heroku-cli/plugin-apps > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
+    - heroku > @oclif/plugin-plugins > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.042Z'
+      heroku > @heroku-cli/plugin-pipelines > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
+    - heroku > @heroku-cli/plugin-apps > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.043Z'
+      heroku > @heroku-cli/plugin-run > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
+    - heroku > @heroku-cli/plugin-pipelines > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.043Z'
+      heroku > @heroku-cli/plugin-webhooks > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
+    - heroku > @oclif/plugin-commands > cli-ux > @oclif/command > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.043Z'
+      heroku > @oclif/plugin-commands > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
+    - heroku > @heroku-cli/plugin-apps > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.043Z'
+      heroku > @oclif/plugin-plugins > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
+    - heroku > @heroku-cli/plugin-pipelines > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.043Z'
+    - heroku > @heroku-cli/plugin-run > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.044Z'
+    - heroku > @heroku-cli/plugin-webhooks > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.044Z'
+    - heroku > @oclif/plugin-plugins > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.044Z'
+    - heroku > @heroku-cli/plugin-apps > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.044Z'
+    - heroku > @heroku-cli/plugin-pipelines > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.044Z'
+    - heroku > @oclif/plugin-commands > cli-ux > @oclif/command > @oclif/plugin-help > @oclif/config > globby > fast-glob > glob-parent:
+        reason: None given
+        expires: '2021-03-09T18:17:45.044Z'
+  SNYK-JS-NODENOTIFIER-1035794:
+    - heroku > @heroku-cli/plugin-pg-v5 > node-notifier:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
+    - heroku > @heroku-cli/plugin-run > @heroku-cli/notifications > node-notifier:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
+    - heroku > @heroku-cli/plugin-spaces > @heroku-cli/notifications > node-notifier:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
+    - heroku > @heroku-cli/plugin-ci-v5 > @heroku-cli/plugin-run-v5 > @heroku-cli/notifications > node-notifier:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
+  SNYK-JS-URIJS-1055003:
+    - heroku > @heroku-cli/plugin-apps-v5 > urijs:
+        reason: None given
+        expires: '2021-03-10T12:06:39.599Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   SNYK-JS-LODASH-567746:
