@@ -1,10 +1,11 @@
+/* eslint-disable max-lines-per-function */
 import { Component, AfterViewInit, HostListener } from '@angular/core';
 
 /** The global this object */
 const global = globalThis;
 
 /** The global Plotly object */
-const Plotly = global.Plotly;
+const plotly = global.Plotly;
 
 @Component({
   selector: 'app-root',
@@ -12,28 +13,21 @@ const Plotly = global.Plotly;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  title = 'Life Map';
+  public title = 'Life Map';
 
-  @HostListener('window:resize') onResize() { this.resize(); }
-  @HostListener('window:beforeprint', ['$event']) onBeforePrint(event) { this.resize(); }
+  @HostListener('window:resize') public onResize() { this.resize(); }
+  @HostListener('window:beforeprint', ['$event']) public onBeforePrint(event) { this.resize(); }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
     this.main();
   }
 
-  private resize() {
-    const map = document.getElementById('map');
-    if (map) {
-      Plotly.Plots.resize(map);
-    }
-  }
-
-  main() {
-    if (!Plotly) {
+  public main() {
+    if (!plotly) {
       return;
     }
 
-    Plotly.d3.csv('../assets/countries.csv',
+    plotly.d3.csv('../assets/countries.csv',
       (err, rows) => {
         const unpack = (_, key) => _.map((row) => row[key]);
 
@@ -113,7 +107,14 @@ export class AppComponent implements AfterViewInit {
         };
 
         const map = document.getElementById('map');
-        Plotly.plot(map, data, layout, { showLink: false });
+        plotly.plot(map, data, layout, { showLink: false });
       });
+  }
+
+  private resize() {
+    const map = document.getElementById('map');
+    if (map) {
+      plotly.Plots.resize(map);
+    }
   }
 }
