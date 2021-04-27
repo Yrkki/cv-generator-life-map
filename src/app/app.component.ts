@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import { Component, AfterViewInit, HostListener } from '@angular/core';
+import { Component, AfterViewInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 
 /** The global this object */
 const global = globalThis;
@@ -13,22 +13,20 @@ const plotly = global.Plotly;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
+  @ViewChild('map') public map!: ElementRef<HTMLDivElement>;
+
   public title = 'Life Map';
 
   @HostListener('window:resize') public onResize() { this.resize(); }
-  @HostListener('window:beforeprint', ['$event']) public onBeforePrint(event) { this.resize(); }
+  @HostListener('window:beforeprint', ['$event']) public onBeforePrint(_event: Event) { this.resize(); }
 
   public ngAfterViewInit() {
     this.main();
   }
 
   public main() {
-    if (!plotly) {
-      return;
-    }
-
     plotly.d3.csv('../assets/countries.csv',
-      (err, rows) => {
+      (_err: any, rows: any) => {
         const unpack = (_, key) => _.map((row) => row[key]);
 
         const data = [{
@@ -106,15 +104,11 @@ export class AppComponent implements AfterViewInit {
           }
         };
 
-        const map = document.getElementById('map');
-        plotly.plot(map, data, layout, { showLink: false });
+        plotly.plot(this.map.nativeElement, data, layout, { showLink: false });
       });
   }
 
   private resize() {
-    const map = document.getElementById('map');
-    if (map) {
-      plotly.Plots.resize(map);
-    }
+    plotly.Plots.resize(this.map.nativeElement);
   }
 }

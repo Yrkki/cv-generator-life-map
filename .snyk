@@ -298,6 +298,10 @@ ignore:
     - heroku > @heroku-cli/plugin-buildpacks > lodash:
         reason: None given
         expires: '2021-04-08T16:15:24.252Z'
+  SNYK-JS-LODASHTEMPLATE-1088054:
+    - '@oclif/command > @oclif/plugin-help > lodash.template':
+        reason: None given
+        expires: '2021-05-27T11:18:53.853Z'
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   SNYK-JS-LODASH-567746:

@@ -1,9 +1,13 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 // eslint-disable-next-line max-lines-per-function
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
+  // eslint-disable-next-line max-lines-per-function
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -15,23 +19,62 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
   });
 
   it(`should have as title 'Life Map'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Life Map');
+    expect(component.title).toEqual('Life Map');
   });
 
   it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(app.title);
+    expect(compiled.querySelector('h1').textContent).toContain(component.title);
+  });
+
+  it('should check onResize', () => {
+    expect(() => {
+      const readAll = component.onResize();
+    }).not.toThrowError();
+  });
+
+  it('should check onBeforePrint', () => {
+    expect(() => {
+      // globalThis.print();
+      const readAll = component.onBeforePrint(new Event('print'));
+      globalThis.dispatchEvent(new KeyboardEvent('keypress', { key: 'Escape' }));
+    }).not.toThrowError();
+  });
+
+  it('should test no plotly', () => {
+    expect(() => {
+      const oldPlotly = globalThis.Plotly;
+
+      globalThis.Plotly = null;
+      const readAll = component.main();
+
+      globalThis.Plotly = oldPlotly;
+    }).not.toThrowError();
+  });
+
+  it('should check all public properties', () => {
+    expect(() => {
+      // let readAll;
+    }).not.toThrowError();
+  });
+
+  it('should check all public methods', () => {
+    expect(() => {
+      let readAll;
+      readAll = component.main();
+      readAll = component.onBeforePrint(new Event('test'));
+      readAll = fixture.debugElement.componentInstance.resize();
+    }).not.toThrowError();
   });
 });
