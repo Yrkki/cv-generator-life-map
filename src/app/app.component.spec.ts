@@ -1,13 +1,12 @@
+/* eslint-disable max-lines-per-function */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
-// eslint-disable-next-line max-lines-per-function
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
-  // eslint-disable-next-line max-lines-per-function
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
