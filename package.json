@@ -94,7 +94,7 @@
     "@oclif/command": "^1.8.0",
     "@tailorbrands/node-exporter-prometheus": "2.0.7",
     "ajv": "^8.6.2",
-    "angular-plotly.js": "4.0.2",
+    "angular-plotly.js": "4.0.4",
     "chart.js": "3.5.0",
     "compression": "1.7.4",
     "express": "4.17.1",
