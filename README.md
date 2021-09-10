@@ -1,4 +1,4 @@
-# CV Generator Life Map
+# Life Map
 
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-life-map.svg)](https://github.com/Yrkki/cv-generator-life-map "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-life-map.svg)](https://github.com/Yrkki/cv-generator-life-map "Top language")
@@ -62,3 +62,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+---
+
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved
