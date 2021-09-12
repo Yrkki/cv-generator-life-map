@@ -65,4 +65,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved
+© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.
