@@ -17,6 +17,52 @@ export class AppComponent implements AfterViewInit {
 
   public title = 'Life Map';
 
+  private get layout() {
+    const layout = {
+      title: 'Markets',
+      geo: {
+        scope: 'world',
+        resolution: 50,
+
+        projection: {
+          type: 'robinson',
+          scale: 4.5
+        },
+        center: {
+          lon: 35,
+          lat: 52
+        },
+
+        bgcolor: 'rgba(0,0,0,0)',
+
+        showocean: true,
+        oceancolor: 'rgba(0,255,255,0.2)',
+        showland: false,
+        landcolor: 'rgba(0,0,0,0.2)',
+        showlakes: true,
+        lakecolor: 'rgba(0,128,255,0.2)',
+        showrivers: true,
+        rivercolor: 'rgba(0,0,255,0.2)',
+        showcountries: true,
+        countrycolor: 'rgba(128,128,128,0.2)',
+        showcoastlines: true,
+        coastlinecolor: 'rgba(0,0,0,0.2)',
+        showframe: true,
+        framecolor: 'rgba(0,0,0,0.2)',
+      },
+      paper_bgcolor: 'rgba(0,0,0,0)',
+      plot_bgcolor: 'rgba(0,0,0,0)',
+      margin: {
+        t: 0,
+        l: 0,
+        r: 0,
+        b: 0
+      }
+    };
+
+    return layout;
+  }
+
   @HostListener('window:resize') public onResize() { this.resize(); }
   @HostListener('window:beforeprint', ['$event']) public onBeforePrint(_event: Event) { this.resize(); }
 
@@ -70,52 +116,6 @@ export class AppComponent implements AfterViewInit {
     }];
 
     return data;
-  }
-
-  private get layout() {
-    const layout = {
-      title: 'Markets',
-      geo: {
-        scope: 'world',
-        resolution: 50,
-
-        projection: {
-          type: 'robinson',
-          scale: 4.5
-        },
-        center: {
-          lon: 35,
-          lat: 52
-        },
-
-        bgcolor: 'rgba(0,0,0,0)',
-
-        showocean: true,
-        oceancolor: 'rgba(0,255,255,0.2)',
-        showland: false,
-        landcolor: 'rgba(0,0,0,0.2)',
-        showlakes: true,
-        lakecolor: 'rgba(0,128,255,0.2)',
-        showrivers: true,
-        rivercolor: 'rgba(0,0,255,0.2)',
-        showcountries: true,
-        countrycolor: 'rgba(128,128,128,0.2)',
-        showcoastlines: true,
-        coastlinecolor: 'rgba(0,0,0,0.2)',
-        showframe: true,
-        framecolor: 'rgba(0,0,0,0.2)',
-      },
-      paper_bgcolor: 'rgba(0,0,0,0)',
-      plot_bgcolor: 'rgba(0,0,0,0)',
-      margin: {
-        t: 0,
-        l: 0,
-        r: 0,
-        b: 0
-      }
-    };
-
-    return layout;
   }
 
   private resize() {
