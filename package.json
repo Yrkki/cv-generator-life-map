@@ -104,18 +104,18 @@
     "nock": "^13.2.1",
     "npm-run-all": "4.1.5",
     "rxjs": "^7.4.0",
-    "snyk": "^1.764.0",
+    "snyk": "^1.765.0",
     "spdy": "^4.0.2",
     "tslib": "^2.3.1",
     "zone.js": "^0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^13.0.3",
-    "@angular-eslint/builder": "13.0.0",
-    "@angular-eslint/eslint-plugin": "13.0.0",
-    "@angular-eslint/eslint-plugin-template": "13.0.0",
-    "@angular-eslint/schematics": "13.0.0",
-    "@angular-eslint/template-parser": "13.0.0",
+    "@angular-eslint/builder": "13.0.1",
+    "@angular-eslint/eslint-plugin": "13.0.1",
+    "@angular-eslint/eslint-plugin-template": "13.0.1",
+    "@angular-eslint/schematics": "13.0.1",
+    "@angular-eslint/template-parser": "13.0.1",
     "@angular/cli": "^13.0.3",
     "@angular/compiler-cli": "^13.0.2",
     "@angular/language-service": "^13.0.2",
@@ -129,7 +129,7 @@
     "@types/chart.js": "2.9.34",
     "@types/jasmine": "3.10.2",
     "@types/jasminewd2": "2.0.10",
-    "@types/node": "16.11.8",
+    "@types/node": "16.11.9",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "auto-changelog": "2.3.0",
@@ -156,7 +156,7 @@
     "sass": "^1.43.4",
     "semantic-release": "^18.0.0",
     "ts-node": "10.4.0",
-    "typescript": "^4.5.2"
+    "typescript": "^4.4.4"
   },
   "engines": {
     "node": "<17",
