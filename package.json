@@ -137,7 +137,7 @@
     "conventional-changelog-angular": "^5.0.13",
     "coveralls": "3.1.1",
     "enhanced-resolve": "5.8.3",
-    "eslint": "^8.3.0",
+    "eslint": "^8.4.0",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-jsdoc": "37.1.0",
     "eslint-plugin-prefer-arrow": "1.2.3",
