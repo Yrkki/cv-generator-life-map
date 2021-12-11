@@ -104,7 +104,7 @@
     "nock": "^13.2.1",
     "npm-run-all": "4.1.5",
     "rxjs": "^7.4.0",
-    "snyk": "^1.788.0",
+    "snyk": "^1.789.0",
     "spdy": "^4.0.2",
     "tslib": "^2.3.1",
     "zone.js": "^0.11.4"
@@ -153,7 +153,7 @@
     "karma-jasmine-html-reporter": "1.7.0",
     "lighthouse": "9.1.0",
     "protractor": "7.0.0",
-    "sass": "^1.44.0",
+    "sass": "^1.45.0",
     "semantic-release": "^18.0.1",
     "ts-node": "10.4.0",
     "typescript": "^4.4.4"
