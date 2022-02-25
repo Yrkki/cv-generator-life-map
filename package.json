@@ -136,7 +136,7 @@
     "codecov": "3.8.3",
     "conventional-changelog-angular": "^5.0.13",
     "coveralls": "3.1.1",
-    "enhanced-resolve": "5.9.0",
+    "enhanced-resolve": "5.9.1",
     "eslint": "^8.9.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jsdoc": "37.9.4",
