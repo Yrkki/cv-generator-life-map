@@ -160,7 +160,7 @@
   },
   "engines": {
     "node": "<17",
-    "npm": "<8.2"
+    "npm": "<8.6"
   },
   "snyk": true
 }
