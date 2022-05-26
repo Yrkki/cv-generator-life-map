@@ -150,13 +150,13 @@
     "karma-coverage": "^2.2.0",
     "karma-htmlfile-reporter": "^0.3.8",
     "karma-jasmine": "^5.0.1",
-    "karma-jasmine-html-reporter": "1.7.0",
+    "karma-jasmine-html-reporter": "2.0.0",
     "lighthouse": "9.6.1",
     "protractor": "7.0.0",
     "sass": "^1.52.1",
     "semantic-release": "^19.0.2",
     "ts-node": "10.8.0",
-    "typescript": "4.7"
+    "typescript": "4.6"
   },
   "engines": {
     "node": "<17",
