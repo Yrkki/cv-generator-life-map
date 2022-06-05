@@ -17,9 +17,9 @@
 [![Node.js LTS version](https://img.shields.io/npm/v/node/lts.svg?label=node@lts)](https://www.npmjs.com/package/node/v/lts "Node.js LTS version")
 [![Node.js version](https://img.shields.io/npm/v/node.svg?label=node)](https://www.npmjs.com/package/node "Node.js version")
 
-[![NPM LTS version](https://img.shields.io/npm/v/npm/lts.svg)](https://www.npmjs.com/package/npm/v/lts "NPM LTS version")
+<!-- [![NPM LTS version](https://img.shields.io/npm/v/npm/lts.svg)](https://www.npmjs.com/package/npm/v/lts "NPM LTS version") -->
 [![NPM version](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/npm "NPM version")
-[![NPM next version](https://img.shields.io/npm/v/npm/next.svg)](https://www.npmjs.com/package/npm/v/next "NPM next version")
+<!-- [![NPM next version](https://img.shields.io/npm/v/npm/next.svg)](https://www.npmjs.com/package/npm/v/next "NPM next version") -->
 
 <!---
 [![Travis build status](https://travis-ci.org/Yrkki/cv-generator-life-map.svg?branch=master)](https://travis-ci.org/Yrkki/cv-generator-life-map "Travis build status")
@@ -65,4 +65,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ---
 
-© 1984 – 2021 [Marinov](http://marinov.ml "Marinov"). All rights reserved.
+© 2018 [Marinov](http://marinov.link "Marinov"). All rights reserved.
