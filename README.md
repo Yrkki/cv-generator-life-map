@@ -1,4 +1,8 @@
-# Life Map
+# Map
+
+![Map](https://github.com/Yrkki/cv-generator-life-logo/blob/master/favicon/cv-generator-life-map/favicon/favicon.ico?raw=true)
+
+Geographic data, processing and tracking for the LifeSpan℠ ecosystem
 
 [![Number of languages](https://img.shields.io/github/languages/count/Yrkki/cv-generator-life-map.svg)](https://github.com/Yrkki/cv-generator-life-map "Number of languages")
 [![Top language](https://img.shields.io/github/languages/top/Yrkki/cv-generator-life-map.svg)](https://github.com/Yrkki/cv-generator-life-map "Top language")
