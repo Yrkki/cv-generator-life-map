@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -6,6 +5,8 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -13,17 +14,21 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
     "importHelpers": true,
-    "target": "es2020",
-    "module": "es2020",
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "lib": [
-      "es2018",
+      "ES2022",
       "dom"
     ],
     "resolveJsonModule": true,
     "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
@@ -31,6 +36,11 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "extendedDiagnostics": {
+      "checks": {
+        "optionalChainNotNullable": "suppress"
+      }
+    }
   }
 }
