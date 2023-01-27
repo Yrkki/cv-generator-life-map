@@ -1,6 +1,7 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
+// eslint-disable-next-line max-lines-per-function
 describe('workspace-project App', () => {
   let page: AppPage;
 
@@ -17,7 +18,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', async () => {
     await page.navigateTo();
-    expect(await page.getParagraphText()).toEqual('Welcome to ' + appTitle);
+    expect(await page.getParagraphText()).toEqual(`You are browsing the ${appTitle} service. 🗿`);
   });
 
   afterEach(async () => {

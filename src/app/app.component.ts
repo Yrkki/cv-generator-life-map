@@ -2,7 +2,7 @@
 import { Component, AfterViewInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 
 /** The global this object */
-const global = globalThis;
+const global = globalThis as any;
 
 /** The global Plotly object */
 const plotly = global.Plotly;
@@ -80,7 +80,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   private getData(rows: any) {
-    const unpack = (_, key) => _.map((row) => row[key]);
+    const unpack = (_: any[], key: string) => _.map((row) => row[key]);
 
     const data = [{
       type: 'choropleth',

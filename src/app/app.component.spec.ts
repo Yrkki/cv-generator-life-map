@@ -53,12 +53,14 @@ describe('AppComponent', () => {
 
   it('should test no plotly', () => {
     expect(() => {
-      const oldPlotly = globalThis.Plotly;
+      const global = globalThis as any;
 
-      globalThis.Plotly = null;
+      const oldPlotly = global.Plotly;
+
+      global.Plotly = null;
       const readAll = component.main();
 
-      globalThis.Plotly = oldPlotly;
+      global.Plotly = oldPlotly;
     }).not.toThrowError();
   });
 
