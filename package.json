@@ -96,7 +96,7 @@
     "@angular/pwa": "^15.1.6",
     "@angular/router": "^15.1.5",
     "@angular/service-worker": "^15.1.5",
-    "@snyk/protect": "^1.1106.0",
+    "@snyk/protect": "^1.1108.0",
     "@tailorbrands/node-exporter-prometheus": "2.0.7",
     "angular-plotly.js": "4.0.4",
     "chart.js": "^4.2.1",
