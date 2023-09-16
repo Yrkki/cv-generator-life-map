@@ -132,7 +132,7 @@
     "@types/chart.js": "2.9.38",
     "@types/jasmine": "4.3.6",
     "@types/jasminewd2": "2.0.11",
-    "@types/node": "20.6.1",
+    "@types/node": "20.6.2",
     "@typescript-eslint/eslint-plugin": "6.7.0",
     "@typescript-eslint/parser": "6.7.0",
     "auto-changelog": "2.4.0",
@@ -157,7 +157,7 @@
     "lighthouse": "^11.1.0",
     "protractor": "7.0.0",
     "sass": "^1.67.0",
-    "semantic-release": "^21.1.1",
+    "semantic-release": "^22.0.0",
     "ts-node": "10.9.1",
     "typescript": "^5.1.6"
   },
