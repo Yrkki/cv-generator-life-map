@@ -157,7 +157,7 @@
     "lighthouse": "^11.4.0",
     "protractor": "7.0.0",
     "sass": "^1.69.7",
-    "semantic-release": "^22.0.12",
+    "semantic-release": "^23.0.0",
     "ts-node": "10.9.2",
     "typescript": "^5.2.2"
   },
