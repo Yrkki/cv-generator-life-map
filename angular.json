@@ -86,10 +86,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cv-generator-life-map:build:production"
+              "buildTarget": "cv-generator-life-map:build:production"
             },
             "development": {
-              "browserTarget": "cv-generator-life-map:build:development"
+              "buildTarget": "cv-generator-life-map:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -97,7 +97,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cv-generator-life-map:build"
+            "buildTarget": "cv-generator-life-map:build"
           }
         },
         "test": {
