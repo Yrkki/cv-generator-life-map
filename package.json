@@ -156,7 +156,7 @@
     "karma-jasmine-html-reporter": "2.1.0",
     "lighthouse": "^11.7.1",
     "protractor": "7.0.0",
-    "sass": "^1.74.1",
+    "sass": "^1.75.0",
     "semantic-release": "^23.0.8",
     "ts-node": "10.9.2",
     "typescript": "^5.4.5"
