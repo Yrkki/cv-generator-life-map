@@ -4,6 +4,7 @@ build:
   commands:
     build:
       - npm install
+      - npm run build
 run:
   command: npm start
   network:
