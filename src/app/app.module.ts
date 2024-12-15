@@ -11,9 +11,7 @@ import { PlotlyViaCDNModule } from 'angular-plotly.js';
 // PlotlyViaCDNModule.plotlyBundle = 'geo';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [],
   imports: [
     BrowserModule,
     AppRoutingModule,
