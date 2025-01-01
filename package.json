@@ -132,7 +132,7 @@
     "@types/chart.js": "2.9.41",
     "@types/jasmine": "5.1.5",
     "@types/jasminewd2": "2.0.13",
-    "@types/node": "22.10.2",
+    "@types/node": "22.10.3",
     "@typescript-eslint/eslint-plugin": "8.19.0",
     "@typescript-eslint/parser": "8.19.0",
     "auto-changelog": "2.5.0",
