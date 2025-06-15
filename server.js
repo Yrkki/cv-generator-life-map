@@ -10,7 +10,7 @@ const pjson = require('./package.json');
 app.use(compression());
 
 // Redirect http to https
-app.get('*', function (req, res, next) {
+app.get('/(.*)/', function (req, res, next) {
     if (req.headers['x-forwarded-proto'] != 'https' && !['localhost', '192.168.1.2'].includes(req.hostname)) {
         var url = 'https://' + req.hostname;
         // var port = app.get('port');
@@ -29,7 +29,7 @@ const distName = __dirname + '/dist/' + pjson.name;
 app.use(express.static(distName));
 
 // Configure Express Rewrites
-app.all('/*', function (req, res, next) {
+app.all('/{*splat}', function (req, res, next) {
     // Just send the index.html for other files to support HTML5Mode
     res.sendFile('index.html', { root: distName });
 });
