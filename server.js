@@ -10,7 +10,7 @@ const pjson = require('./package.json');
 app.use(compression());
 
 // Redirect http to https
-app.get('/(.*)/', function (req, res, next) {
+app.get(/(.*)/, function (req, res, next) {
     if (req.headers['x-forwarded-proto'] != 'https' && !['localhost', '192.168.1.2'].includes(req.hostname)) {
         var url = 'https://' + req.hostname;
         // var port = app.get('port');
