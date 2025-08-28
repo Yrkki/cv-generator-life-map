@@ -153,7 +153,7 @@
     "karma-htmlfile-reporter": "^0.3.8",
     "karma-jasmine": "^5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
-    "lighthouse": "^12.8.1",
+    "lighthouse": "^12.8.2",
     "protractor": "7.0.0",
     "sass": "^1.91.0",
     "semantic-release": "^24.2.7",
