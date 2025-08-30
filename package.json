@@ -145,7 +145,7 @@
     "eslint-plugin-prefer-arrow": "1.2.3",
     "figlet": "^1.8.2",
     "figlet-cli": "^0.3.0",
-    "jasmine-core": "^5.9.0",
+    "jasmine-core": "^5.10.0",
     "jasmine-spec-reporter": "^7.0.0",
     "karma": "6.4.4",
     "karma-chrome-launcher": "^3.2.0",
