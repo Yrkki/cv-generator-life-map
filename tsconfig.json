@@ -13,7 +13,7 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "importHelpers": true,
     "target": "ES2022",
@@ -21,10 +21,6 @@
     "useDefineForClassFields": false,
     "typeRoots": [
       "node_modules/@types"
-    ],
-    "lib": [
-      "ES2022",
-      "dom"
     ],
     "resolveJsonModule": true,
     "esModuleInterop": false,
