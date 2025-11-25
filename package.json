@@ -83,8 +83,23 @@
     "type": "git",
     "url": "https://github.com/Yrkki/cv-generator-life-map.git"
   },
+  "overrides": {
+    "@opentelemetry/api": "1.9.0",
+    "nopt": "^9",
+    "@npmcli/installed-package-contents": "^4",
+    "rimraf": "^6",
+    "uuid": "^9",
+    "glob": "^10",
+    "boom": "@hapi/boom",
+    "cryptiles": "@hapi/cryptiles",
+    "sntp": "@hapi/sntp",
+    "hoek": "@hapi/hoek",
+    "hawk": "@hapi/hawk",
+    "inflight": "1.0.6",
+    "request": "^2.88.2",
+    "oclif": "^4"
+  },
   "dependencies": {
-    "0": "^0.0.0",
     "@angular/animations": "^21.0.0",
     "@angular/common": "^21.0.0",
     "@angular/compiler": "^21.0.0",
