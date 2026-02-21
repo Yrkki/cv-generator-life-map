@@ -16,13 +16,13 @@ A geographic data visualization frontend for the LifeSpan ecosystem. Displays co
 - **Deployment:** Heroku with semantic-release
 
 ### Application Structure
-- **Root Component:** [src/app/app.component.ts](src/app/app.component.ts) - singleton map visualizer
+- **Root Component:** [src/app/app.component.ts](../src/app/app.component.ts) - singleton map visualizer
   - Uses `@ViewChild` to reference native DOM element for Plotly rendering
   - `AfterViewInit` lifecycle hook to initialize map after view ready
   - `@HostListener` for window resize and print events
-- **Routing:** [src/app/app-routing.module.ts](src/app/app-routing.module.ts) - currently empty (single-page app)
-- **Module:** [src/app/app.module.ts](src/app/app.module.ts) - uses `provideZonelessChangeDetection()` for performance
-- **Data Source:** [src/assets/countries.csv](src/assets/countries.csv) - country names mapped to "Weight" values
+- **Routing:** [src/app/app-routing.module.ts](../src/app/app-routing.module.ts) - currently empty (single-page app)
+- **Module:** [src/app/app.module.ts](../src/app/app.module.ts) - uses `provideZonelessChangeDetection()` for performance
+- **Data Source:** [src/assets/countries.csv](../src/assets/countries.csv) - country names mapped to "Weight" values
 
 ### Data Flow
 1. Component loads countries.csv via Plotly's d3.csv parser
@@ -69,10 +69,10 @@ npm run dev:plan:update:report:action:update-packages
 ```
 
 ### Server Runtime
-- [server.js](server.js) handles Express static file serving
+- [server.js](../server.js) handles Express static file serving
 - Redirects HTTP→HTTPS (except localhost/192.168.1.2)
 - Enables compression middleware
-- Serves [src/index.html](src/index.html) for HTML5Mode routing
+- Serves [src/index.html](../src/index.html) for HTML5Mode routing
 - Heroku integration: listens on `process.env.PORT || 5000`
 - New Relic APM enabled via `newrelic.js`
 
