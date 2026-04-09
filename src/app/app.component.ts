@@ -10,7 +10,8 @@ const plotly = global.Plotly;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  standalone: true
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('map') public map!: ElementRef<HTMLDivElement>;
