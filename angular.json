@@ -97,23 +97,26 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "src/test.ts",
-            
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
+            "browsers": [
+              "chromium"
             ],
-            "styles": [
-              "src/styles.scss"
+            "buildTarget": "::development",
+            "runner": "vitest",
+            "runnerConfig": "vitest.config.ts",
+            "coverageReporters": [
+              "html",
+              "lcov",
+              "text-summary"
             ],
-            "scripts": [],
-            "codeCoverage": true
+            "coverageThresholds": {
+              "statements": 90,
+              "branches": 60,
+              "functions": 90,
+              "lines": 90
+            }
           }
         },
         "e2e": {
