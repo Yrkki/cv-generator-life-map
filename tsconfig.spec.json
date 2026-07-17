@@ -2,7 +2,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/spec"
+    "outDir": "./out-tsc/spec",
+    "types": ["vitest"],
+    "typeRoots": ["./node_modules/@types", "./node_modules"]
   },
   "files": [
     "src/test.ts"

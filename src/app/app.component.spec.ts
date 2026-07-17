@@ -1,4 +1,5 @@
 /* eslint-disable max-lines-per-function */
+import { beforeEach, describe, expect, it } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
@@ -34,7 +35,7 @@ describe('AppComponent', () => {
   it('should check onResize', () => {
     expect(() => {
       const readAll = component.onResize();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check onBeforePrint', () => {
@@ -42,7 +43,7 @@ describe('AppComponent', () => {
       // globalThis.print();
       const readAll = component.onBeforePrint(new Event('print'));
       globalThis.dispatchEvent(new KeyboardEvent('keypress', { key: 'Escape' }));
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should test no plotly', () => {
@@ -55,13 +56,13 @@ describe('AppComponent', () => {
       const readAll = component.main();
 
       global.Plotly = oldPlotly;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check all public properties', () => {
     expect(() => {
       // let readAll;
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 
   it('should check all public methods', () => {
@@ -70,6 +71,6 @@ describe('AppComponent', () => {
       readAll = component.main();
       readAll = component.onBeforePrint(new Event('test'));
       readAll = fixture.debugElement.componentInstance.resize();
-    }).not.toThrowError();
+    }).not.toThrow();
   });
 });

@@ -6,14 +6,27 @@ import {
   platformBrowserTesting
 } from '@angular/platform-browser/testing';
 
-// Load Plotly for tests
-import Plotly from 'plotly.js';
-(globalThis as any).Plotly = Plotly;
+// Provide a lightweight Plotly stub for tests to avoid loading the full library
+const plotlyStub: any = {
+  d3: {
+    csv: (_url: string, callback: Function) => callback(null, [])
+  },
+  plot: () => {},
+  Plots: {
+    resize: () => {}
+  }
+};
 
-// First, initialize the Angular testing environment.
-getTestBed().initTestEnvironment(
-  BrowserTestingModule,
-  platformBrowserTesting(), {
-  teardown: { destroyAfterEach: false }
+(globalThis as any).Plotly = plotlyStub;
+
+// First, initialize the Angular testing environment (idempotent).
+try {
+  getTestBed().initTestEnvironment(
+    BrowserTestingModule,
+    platformBrowserTesting(), {
+      teardown: { destroyAfterEach: false }
+    }
+  );
+} catch (e) {
+  // Environment already initialized by another runner; ignore.
 }
-);
