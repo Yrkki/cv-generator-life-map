@@ -25,11 +25,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/cv-generator-life-map",
+            "outputPath": {
+              "base": "dist/cv-generator-life-map"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "aot": true,
@@ -41,7 +42,8 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -64,13 +66,10 @@
                 }
               ],
               "outputHashing": "all",
-              "serviceWorker": true,
-              "ngswConfigPath": "ngsw-config.json"
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
