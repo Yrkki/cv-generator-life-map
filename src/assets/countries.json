@@ -1,0 +1,37 @@
+[
+  {
+    "Country": "Bulgaria",
+    "Weight": 18,
+    "ISO3": "BGR"
+  },
+  {
+    "Country": "Norway",
+    "Weight": 10,
+    "ISO3": "NOR"
+  },
+  {
+    "Country": "Germany",
+    "Weight": 3,
+    "ISO3": "DEU"
+  },
+  {
+    "Country": "Belgium",
+    "Weight": 1,
+    "ISO3": "BEL"
+  },
+  {
+    "Country": "Austria",
+    "Weight": 1,
+    "ISO3": "AUT"
+  },
+  {
+    "Country": "China",
+    "Weight": 1,
+    "ISO3": "CHN"
+  },
+  {
+    "Country": "Denmark",
+    "Weight": 1,
+    "ISO3": "DNK"
+  }
+]

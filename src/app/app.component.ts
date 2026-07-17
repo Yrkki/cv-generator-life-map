@@ -1,22 +1,25 @@
 /* eslint-disable max-lines-per-function */
 import { Component, AfterViewInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 
-/** The global this object */
-const global = globalThis as any;
-
-/** The global Plotly object */
-const plotly = global.Plotly;
+interface Country {
+  Country: string;
+  Weight: number;
+  ISO3: string;
+}
+type Countries = Country[];
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('map') public map!: ElementRef<HTMLDivElement>;
 
   public title = 'Life Map';
+
+  private plotly?: any;
 
   private get layout() {
     const layout = {
@@ -68,27 +71,79 @@ export class AppComponent implements AfterViewInit {
   @HostListener('window:beforeprint', ['$event']) public onBeforePrint(_event: Event) { this.resize(); }
 
   public ngAfterViewInit() {
-    this.main();
+    void this.initPlotly();
   }
 
-  public main() {
-    plotly.d3.csv('../assets/countries.csv',
-      (_err: any, rows: any) => {
-        const data = this.getData(rows);
-        const layout = this.layout;
-        plotly.plot(this.map.nativeElement, data, layout, { showLink: false });
-      });
+  private async initPlotly() {
+    const plotly = await this.ensurePlotly();
+    if (!plotly) {
+      this.warn('[Plotly] Failed to load Plotly.');
+      return;
+    }
+
+    await this.main();
   }
 
-  private getData(rows: any) {
-    const unpack = (_: any[], key: string) => _.map((row) => row[key]);
+  private async ensurePlotly() {
+    if (this.plotly) {
+      return this.plotly;
+    }
+
+    if (typeof document === 'undefined') {
+      return null;
+    }
+
+    try {
+      const plotlyModule = await import('plotly.js/dist/plotly-geo.min.js');
+      const plotly = (plotlyModule as any).default ?? (plotlyModule as any).Plotly ?? plotlyModule;
+      this.plotly = plotly;
+      return plotly;
+    } catch (error) {
+      this.warn('[Plotly] Failed to load Plotly:', error);
+      return null;
+    }
+  }
+
+  public async main() {
+    const plotly = this.plotly;
+    if (!plotly) {
+      this.warn('[Plotly] main aborted because Plotly is unavailable');
+      return;
+    }
+
+    if (!this.map?.nativeElement) {
+      this.warn('[Plotly] main aborted because map element is unavailable');
+      return;
+    }
+
+    const baseUrl = typeof document !== 'undefined' && document.baseURI
+      ? document.baseURI
+      : typeof import.meta !== 'undefined' && (import.meta as any).url
+        ? (import.meta as any).url
+        : undefined;
+    const assetUrl = baseUrl
+      ? new URL('./assets/countries.json', baseUrl).href
+      : './assets/countries.json';
+
+    const response = await fetch(assetUrl);
+    const rows: Countries = await response.json();
+
+    const data = this.getData(rows);
+    const layout = this.layout;
+    const plotFn = plotly.newPlot ?? plotly.plot;
+    await plotFn(this.map.nativeElement, data, layout, { showLink: false });
+  }
+
+  private getData(rows: Countries) {
+    const unpack = (records: Countries, key: keyof Country) => records.map((row) => row[key]);
 
     const data = [{
       type: 'choropleth',
-      locationmode: 'country names',
-      locations: unpack(rows, 'Country'),
+      locationmode: 'ISO-3',
+      locations: unpack(rows, 'ISO3'),
       z: unpack(rows, 'Weight'),
-      // text: unpack(rows, 'Country'),
+      text: unpack(rows, 'Country'),
+      hovertemplate: '%{z}<extra>%{text}</extra>',
       autocolorscale: false,
       colorscale: [
         [0, 'rgb(65,105,225)'],
@@ -107,19 +162,21 @@ export class AppComponent implements AfterViewInit {
           width: 1
         }
       },
-      opacity: 1,
-      // margin: {
-      //   t: 0, // top margin
-      //   l: 0, // left margin
-      //   r: 0, // right margin
-      //   b: 0 // bottom margin
-      // }
+      opacity: 1
     }];
 
     return data;
   }
 
   private resize() {
-    plotly.Plots.resize(this.map.nativeElement);
+    if (this.plotly && this.map?.nativeElement) {
+      this.plotly.Plots.resize(this.map.nativeElement);
+    }
+  }
+
+  private warn(...data: any[]): void {
+    /* eslint-disable no-console */
+    console.warn(data);
+    /* eslint-enable no-console */
   }
 }

@@ -6,18 +6,54 @@ import {
   platformBrowserTesting
 } from '@angular/platform-browser/testing';
 
-// Provide a lightweight Plotly stub for tests to avoid loading the full library
-const plotlyStub: any = {
-  d3: {
-    csv: (_url: string, callback: Function) => callback(null, [])
-  },
-  plot: () => {},
-  Plots: {
-    resize: () => {}
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+  try {
+    Object.defineProperty(document, 'baseURI', {
+      value: 'http://localhost/',
+      configurable: true
+    });
+  } catch {
+    // ignore if baseURI is not configurable in this environment
   }
-};
+}
 
-(globalThis as any).Plotly = plotlyStub;
+// Load Plotly from npm in the browser-like test environment.
+async function loadPlotlyFromNpm() {
+  if (typeof window === 'undefined' || !('document' in window)) return null;
+  if ((window as any).Plotly) return (window as any).Plotly;
+
+  const plotlyModule = await import('plotly.js/dist/plotly-geo.min.js');
+  const plotly = (plotlyModule as any).default ?? plotlyModule;
+  if (plotly) {
+    (window as any).Plotly = plotly;
+  }
+  return plotly;
+}
+
+const plotlyFromNpm = await loadPlotlyFromNpm();
+(globalThis as any).Plotly = plotlyFromNpm ?? null;
+
+// Mark which Plotly implementation is active so tests / Playwright can detect it
+(globalThis as any).__PLOTLY_SOURCE = plotlyFromNpm ? 'npm' : null;
+(globalThis as any).__PLOTLY_VERSION = (plotlyFromNpm && (plotlyFromNpm as any).version) || null;
+if (typeof console !== 'undefined' && console.info) {
+  console.info('[tests] Plotly source:', (globalThis as any).__PLOTLY_SOURCE, 'version:', (globalThis as any).__PLOTLY_VERSION);
+}
+
+// Instrument Plotly.plot to record whether a real plot call happened during tests.
+try {
+  const p = (globalThis as any).Plotly;
+  if (p) {
+    p._test_plotCalled = false;
+    const orig = p.plot;
+    p.plot = (...args: any[]) => {
+      try { p._test_plotCalled = true; } catch {}
+      return orig?.apply(p, args);
+    };
+  }
+} catch {
+  // ignore instrumentation errors
+}
 
 // First, initialize the Angular testing environment (idempotent).
 try {

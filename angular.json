@@ -43,7 +43,10 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "browser": "src/main.ts"
+            "browser": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "plotly.js"
+            ]
           },
           "configurations": {
             "production": {

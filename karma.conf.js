@@ -22,7 +22,7 @@ module.exports = function (config) {
       },
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    files: ['https://cdn.plot.ly/plotly-latest.min.js'],
+    files: ['node_modules/plotly.js/dist/plotly.js'],
     jasmineHtmlReporter: {
       suppressAll: true // removes the duplicated traces
     },
