@@ -23,7 +23,7 @@ app.get(/(.*)/, function (req, res, next) {
         next()
 });
 
-const distName = __dirname + '/dist/' + pjson.name;
+const distName = __dirname + '/dist/' + pjson.name + '/browser';
 
 // Serve only the static files form the dist directory
 app.use(express.static(distName));
