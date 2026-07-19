@@ -157,7 +157,7 @@
     "enhanced-resolve": "5.24.2",
     "eslint": "^9.39.5",
     "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-jsdoc": "63.1.0",
+    "eslint-plugin-jsdoc": "63.2.0",
     "eslint-plugin-prefer-arrow": "1.2.3",
     "figlet": "^1.11.2",
     "figlet-cli": "^0.3.0",
