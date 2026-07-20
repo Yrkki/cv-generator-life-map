@@ -114,7 +114,6 @@
     "@snyk/protect": "^1.1306.1",
     "@tailorbrands/node-exporter-prometheus": "2.0.7",
     "angular-plotly.js": "20.0.0",
-    "bootstrap": "^5.3.8",
     "compression": "1.8.1",
     "express": "5.2.1",
     "newrelic": "^14.3.1",
