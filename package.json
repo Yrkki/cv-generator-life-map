@@ -154,7 +154,7 @@
     "codecov": "^3.8.3",
     "conventional-changelog-angular": "^9.2.1",
     "coveralls": "3.1.1",
-    "enhanced-resolve": "5.24.2",
+    "enhanced-resolve": "5.24.3",
     "eslint": "^9.39.5",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-jsdoc": "63.2.0",
