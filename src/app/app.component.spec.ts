@@ -1,9 +1,7 @@
- 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-// import template from './app.component.html?raw';
-// import styles from './app.component.scss?raw';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -12,29 +10,25 @@ describe('AppComponent', () => {
   let plotly: any;
   let fetchSpy: any;
   let consoleWarnSpy: ReturnType<typeof vi.spyOn>;
+  let initPlotlySpy: ReturnType<typeof vi.spyOn>;
 
   beforeEach(async () => {
     plotly = (globalThis as any).Plotly;
     if (!plotly) {
       throw new Error('Plotly did not load for tests');
     }
-    fetchSpy = vi.spyOn(globalThis as any, 'fetch');
+    fetchSpy = vi.spyOn(globalThis as any, 'fetch').mockImplementation(() =>
+      Promise.resolve(new Response(JSON.stringify([{ Country: 'Test', Weight: 1, ISO3: 'TST' }]), {
+        headers: { 'Content-Type': 'application/json' }
+      }))
+    );
     consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
-
-    // TestBed.overrideComponent(AppComponent, {
-    //   set: {
-    //     template,
-    //     styles: [styles],
-    //     templateUrl: undefined,
-    //     styleUrls: undefined
-    //   }
-    // });
+    initPlotlySpy = vi.spyOn(AppComponent.prototype as any, 'initPlotly').mockResolvedValue(undefined);
 
     await TestBed.configureTestingModule({
       imports: [AppComponent]
     });
 
-    // await TestBed.resolveComponentResources();
     await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
@@ -43,10 +37,11 @@ describe('AppComponent', () => {
     await fixture.whenStable();
   });
 
-  // afterEach(async () => {
-  //   fetchSpy.mockRestore();
-  //   consoleWarnSpy.mockRestore();
-  // });
+  afterEach(() => {
+    fetchSpy.mockRestore();
+    consoleWarnSpy.mockRestore();
+    initPlotlySpy.mockRestore();
+  });
 
   it('should create the component', () => {
     expect(component).toBeTruthy();
@@ -74,8 +69,6 @@ describe('AppComponent', () => {
     await expect(async () => {
       await component.main();
     }).not.toThrow();
-    // expect(fetchSpy).toHaveBeenCalled();
-    // expect(fetchSpy.mock.calls[0][0]).toContain('assets/countries.json');
   });
 
   it('should return the same Plotly instance when already loaded', async () => {
@@ -116,33 +109,17 @@ describe('AppComponent', () => {
   });
 
   it('should call main when initPlotly succeeds', async () => {
+    initPlotlySpy.mockRestore();
     const mainSpy = vi.spyOn(component as any, 'main').mockResolvedValue(undefined);
     await component['initPlotly']();
     expect(mainSpy).toHaveBeenCalled();
   });
 
   it('should warn when initPlotly fails to load Plotly', async () => {
+    initPlotlySpy.mockRestore();
     const ensureSpy = vi.spyOn(component as any, 'ensurePlotly').mockResolvedValue(null);
     await component['initPlotly']();
     expect(consoleWarnSpy).toHaveBeenCalledWith(['[Plotly] Failed to load Plotly.']);
-  });
-
-  it('should plot data when Plotly and map are available', async () => {
-    component['plotly'] = plotly;
-    const mapElement = fixture.nativeElement.querySelector('#map');
-    expect(mapElement).toBeTruthy();
-    (component as any).map = { nativeElement: mapElement };
-
-    const plotFnName = plotly.newPlot ? 'newPlot' : 'plot';
-    const plotSpy = vi.spyOn(plotly, plotFnName as any);
-    fetchSpy.mockResolvedValue(new Response(JSON.stringify([{ Country: 'Test', Weight: 1, ISO3: 'TST' }]), {
-      headers: { 'Content-Type': 'application/json' }
-    }));
-
-    await component.main();
-
-    expect(plotSpy).toHaveBeenCalled();
-    expect(fetchSpy).toHaveBeenCalled();
   });
 
   it('should expose a consistent layout object', () => {
@@ -151,16 +128,32 @@ describe('AppComponent', () => {
     expect(layout.geo.scope).toBe('world');
   });
 
-  it('reports which Plotly implementation is used', () => {
+  it('should report which Plotly implementation is used', () => {
     const src = (globalThis as any).__PLOTLY_SOURCE;
     expect(src).toBe('npm');
   });
 
-  it('logs Plotly info to the test output', () => {
+  it('should log Plotly info to the test output', () => {
     const src = (globalThis as any).__PLOTLY_SOURCE;
     const ver = (globalThis as any).__PLOTLY_VERSION;
     console.info('[tests] Plotly page source:', src, 'version:', ver);
     expect(src).toBeDefined();
     expect(ver).toBeDefined();
+  });
+
+  it('should plot data when Plotly and map are available', async () => {
+    initPlotlySpy.mockRestore();
+    component['plotly'] = plotly;
+    const mapElement = fixture.nativeElement.querySelector('#map');
+    expect(mapElement).toBeTruthy();
+    (component as any).map = { nativeElement: mapElement };
+
+    const plotFnName = plotly.newPlot ? 'newPlot' : 'plot';
+    const plotSpy = vi.spyOn(plotly, plotFnName as any);
+
+    await component.main();
+
+    expect(plotSpy).toHaveBeenCalled();
+    expect(fetchSpy).toHaveBeenCalled();
   });
 });

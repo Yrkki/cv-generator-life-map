@@ -24,6 +24,7 @@ export default defineConfig([
   globalIgnores(['projects/**/*']), {
     languageOptions: {
       globals: {
+        Promise: 'readonly',
         globalThis: 'readonly',
         describe: 'readonly',
         beforeEach: 'readonly',
