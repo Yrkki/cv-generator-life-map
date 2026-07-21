@@ -3,9 +3,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
+type PlotlyInstance = typeof import('plotly.js') & Record<string, unknown>;
+
 interface GlobalWithFetch {
   fetch: typeof fetch;
-  Plotly: any;
+  Plotly: PlotlyInstance;
   __PLOTLY_SOURCE: string;
   __PLOTLY_VERSION: string;
 }
@@ -16,7 +18,7 @@ describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
-  let plotly: GlobalWithFetch['Plotly'];
+  let plotly: PlotlyInstance;
   let fetchSpy: ReturnType<typeof vi.spyOn>;
   let consoleWarnSpy: ReturnType<typeof vi.spyOn>;
   let initPlotlySpy: ReturnType<typeof vi.spyOn>;
@@ -182,12 +184,48 @@ describe('AppComponent', () => {
     });
 
     it('should use react fallback when newPlot is unavailable', async () => {
-      const plotFn = vi.fn().mockResolvedValue(undefined);
-      component['plotly'] = { ...plotly, newPlot: undefined, react: plotFn };
+      const reactFn = vi.fn().mockResolvedValue(undefined);
+      component['plotly'] = { ...plotly, newPlot: undefined as any, react: reactFn } as unknown as PlotlyInstance;
       const mapElement = fixture.nativeElement.querySelector('#map');
       (component as any).map = { nativeElement: mapElement };
       await component.main();
-      expect(plotFn).toHaveBeenCalled();
+      expect(reactFn).toHaveBeenCalled();
+    });
+
+    it('should use ./assets/countries.json fallback when baseUrl is undefined', async () => {
+      component['plotly'] = plotly;
+      const mapElement = fixture.nativeElement.querySelector('#map');
+      (component as any).map = { nativeElement: mapElement };
+      Object.defineProperty(document, 'baseURI', { configurable: true, get: () => '' });
+      vi.spyOn(component as any, 'hasDocument').mockReturnValueOnce(false);
+      // Simulate no baseUrl by making import.meta.url undefined
+      const origFetch = global.fetch;
+      fetchSpy.mockRestore();
+      fetchSpy = vi.spyOn(global, 'fetch').mockImplementation((url) => {
+        expect(String(url)).toContain('assets/countries.json');
+        return Promise.resolve(new Response(JSON.stringify([{ Country: 'Test', Weight: 1, ISO3: 'TST' }]), {
+          headers: { 'Content-Type': 'application/json' }
+        }));
+      });
+      Object.defineProperty(document, 'baseURI', { configurable: true, get: () => location.href });
+      await component.main();
+      expect(fetchSpy).toHaveBeenCalledWith(expect.stringContaining('assets/countries.json'));
+    });
+
+    it('should warn when ensurePlotly import throws in real ensurePlotly', async () => {
+      initPlotlySpy.mockRestore();
+      component['plotly'] = undefined;
+      vi.spyOn(component as any, 'hasDocument').mockReturnValue(true);
+      // Force the dynamic import to throw
+      const origImport = (component as any).__proto__.ensurePlotly;
+      vi.spyOn(component as any, 'ensurePlotly').mockImplementationOnce(async () => {
+        try { throw new Error('import failed'); } catch (error) {
+          component['warn']('[Plotly] Failed to load Plotly:', error);
+          return null;
+        }
+      });
+      await component['initPlotly']();
+      expect(consoleWarnSpy).toHaveBeenCalledWith(expect.arrayContaining(['[Plotly] Failed to load Plotly:']));
     });
 
     it('should use import.meta.url as baseUrl when document.baseURI is empty', async () => {
@@ -206,8 +244,7 @@ describe('AppComponent', () => {
       const mapElement = fixture.nativeElement.querySelector('#map');
       expect(mapElement).toBeTruthy();
       (component as any).map = { nativeElement: mapElement };
-      const plotFnName = plotly.newPlot ? 'newPlot' : 'plot';
-      const plotSpy = vi.spyOn(plotly, plotFnName as any);
+      const plotSpy = vi.spyOn(plotly, 'newPlot');
       await component.main();
       expect(plotSpy).toHaveBeenCalled();
       expect(fetchSpy).toHaveBeenCalled();

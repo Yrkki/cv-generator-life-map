@@ -6,6 +6,16 @@ import {
   platformBrowserTesting
 } from '@angular/platform-browser/testing';
 
+type PlotlyInstance = typeof import('plotly.js') & Record<string, unknown>;
+
+interface GlobalWithPlotly {
+  Plotly: PlotlyInstance | null;
+  __PLOTLY_SOURCE: string | null;
+  __PLOTLY_VERSION: string | null;
+}
+
+const g = globalThis as unknown as GlobalWithPlotly;
+
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   try {
     Object.defineProperty(document, 'baseURI', {
@@ -17,21 +27,13 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   }
 }
 
-interface GlobalWithPlotly {
-  Plotly: typeof import('plotly.js') | null;
-  __PLOTLY_SOURCE: string | null;
-  __PLOTLY_VERSION: string | null;
-}
-
-const g = globalThis as unknown as GlobalWithPlotly;
-
 // Load Plotly from npm in the browser-like test environment.
-const loadPlotlyFromNpm = async () => {
+const loadPlotlyFromNpm = async (): Promise<PlotlyInstance | null> => {
   if (typeof window === 'undefined' || !('document' in window)) return null;
   if (g.Plotly) return g.Plotly;
 
   const plotlyModule = await import('plotly.js/dist/plotly-geo.min.js');
-  const plotly = plotlyModule.default;
+  const plotly = plotlyModule.default as unknown as PlotlyInstance;
   if (plotly) {
     g.Plotly = plotly;
   }
@@ -43,24 +45,24 @@ g.Plotly = plotlyFromNpm ?? null;
 
 // Mark which Plotly implementation is active so tests / Playwright can detect it
 g.__PLOTLY_SOURCE = plotlyFromNpm ? 'npm' : null;
-g.__PLOTLY_VERSION = (plotlyFromNpm && (plotlyFromNpm as unknown as { version: string }).version) || null;
+g.__PLOTLY_VERSION = (plotlyFromNpm && (plotlyFromNpm['version'] as string)) || null;
 if (typeof console !== 'undefined' && console.info) {
   console.info('[tests] Plotly source:', g.__PLOTLY_SOURCE, 'version:', g.__PLOTLY_VERSION);
 }
 
-// Instrument Plotly.plot to record whether a real plot call happened during tests.
+// Instrument Plotly.newPlot to record whether a real plot call happened during tests.
 try {
   const p = g.Plotly;
   if (p) {
-    (p as unknown as Record<string, unknown>)._test_plotCalled = false;
+    p['_test_plotCalled'] = false;
     const orig = p.newPlot;
     p.newPlot = (...args: Parameters<typeof p.newPlot>) => {
       try {
-        (p as unknown as Record<string, unknown>)._test_plotCalled = true;
+        p['_test_plotCalled'] = true;
       } catch (instrumentError) {
         console.warn('[tests] Failed to set _test_plotCalled:', instrumentError);
       }
-      return orig?.apply(p, args);
+      return orig.apply(p, args);
     };
   }
 } catch {

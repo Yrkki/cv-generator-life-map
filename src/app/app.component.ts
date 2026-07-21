@@ -1,6 +1,8 @@
 
 import { Component, AfterViewInit, HostListener, ViewChild, ElementRef } from '@angular/core';
-import type { PlotData, Layout } from 'plotly.js';
+import type { Layout, PlotData } from 'plotly.js';
+
+type PlotlyInstance = typeof import('plotly.js') & Record<string, unknown>;
 
 interface Country {
   Country: string;
@@ -20,7 +22,7 @@ export class AppComponent implements AfterViewInit {
 
   public title = 'Life Map';
 
-  private plotly?: typeof import('plotly.js');
+  private plotly?: PlotlyInstance;
 
   private get layout() {
     const layout = {
@@ -89,7 +91,7 @@ export class AppComponent implements AfterViewInit {
 
     const baseUrl = typeof document !== 'undefined' && document.baseURI
       ? document.baseURI
-      : typeof import.meta?.url !== 'undefined'
+      : typeof import.meta.url !== 'undefined'
         ? import.meta.url
         : undefined;
     const assetUrl = baseUrl
@@ -101,7 +103,7 @@ export class AppComponent implements AfterViewInit {
 
     const data = this.getData(rows);
     const layout = this.layout as Partial<Layout>;
-    await (plotly.newPlot ?? plotly.react)(this.map.nativeElement, data as PlotData[], layout, { showLink: false });
+    await (plotly.newPlot ?? plotly.react)(this.map.nativeElement, data, layout, { showLink: false });
   }
 
   protected hasDocument(): boolean { return typeof document !== 'undefined'; }
