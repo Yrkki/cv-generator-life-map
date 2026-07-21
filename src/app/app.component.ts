@@ -1,5 +1,6 @@
- 
+
 import { Component, AfterViewInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import type { PlotData, Layout } from 'plotly.js';
 
 interface Country {
   Country: string;
@@ -19,7 +20,7 @@ export class AppComponent implements AfterViewInit {
 
   public title = 'Life Map';
 
-  private plotly?: any;
+  private plotly?: typeof import('plotly.js');
 
   private get layout() {
     const layout = {
@@ -88,8 +89,8 @@ export class AppComponent implements AfterViewInit {
 
     const baseUrl = typeof document !== 'undefined' && document.baseURI
       ? document.baseURI
-      : typeof import.meta !== 'undefined' && (import.meta as any).url
-        ? (import.meta as any).url
+      : typeof import.meta?.url !== 'undefined'
+        ? import.meta.url
         : undefined;
     const assetUrl = baseUrl
       ? new URL('./assets/countries.json', baseUrl).href
@@ -99,10 +100,11 @@ export class AppComponent implements AfterViewInit {
     const rows: Countries = await response.json();
 
     const data = this.getData(rows);
-    const layout = this.layout;
-    const plotFn = plotly.newPlot ?? plotly.plot;
-    await plotFn(this.map.nativeElement, data, layout, { showLink: false });
+    const layout = this.layout as Partial<Layout>;
+    await (plotly.newPlot ?? plotly.react)(this.map.nativeElement, data as PlotData[], layout, { showLink: false });
   }
+
+  protected hasDocument(): boolean { return typeof document !== 'undefined'; }
 
   private async initPlotly() {
     const plotly = await this.ensurePlotly();
@@ -113,8 +115,6 @@ export class AppComponent implements AfterViewInit {
 
     await this.main();
   }
-
-  protected hasDocument(): boolean { return typeof document !== 'undefined'; }
 
   private async ensurePlotly() {
     if (this.plotly) {
@@ -127,7 +127,7 @@ export class AppComponent implements AfterViewInit {
 
     try {
       const plotlyModule = await import('plotly.js/dist/plotly-geo.min.js');
-      const plotly = (plotlyModule as any).default ?? (plotlyModule as any).Plotly ?? plotlyModule;
+      const plotly = plotlyModule.default;
       this.plotly = plotly;
       return plotly;
     } catch (error) {
@@ -136,17 +136,16 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-  private getData(rows: Countries) {
+  private getData(rows: Countries): Partial<PlotData>[] {
     const unpack = (records: Countries, key: keyof Country) => records.map((row) => row[key]);
 
-    const data = [{
+    const data: Partial<PlotData>[] = [{
       type: 'choropleth',
       locationmode: 'ISO-3',
       locations: unpack(rows, 'ISO3'),
       z: unpack(rows, 'Weight'),
-      text: unpack(rows, 'Country'),
+      text: unpack(rows, 'Country') as string[],
       hovertemplate: '%{z}<extra>%{text}</extra>',
-      autocolorscale: false,
       colorscale: [
         [0, 'rgb(65,105,225)'],
         [1, 'rgb(220,166,224)']
@@ -155,8 +154,7 @@ export class AppComponent implements AfterViewInit {
         // title: 'Projects',
         thickness: 20,
         tick0: 0,
-        dtick: 1,
-        autotick: false
+        dtick: 1
       },
       marker: {
         line: {

@@ -5,20 +5,6 @@ import * as angular from 'angular-eslint';
 import jsdoc from 'eslint-plugin-jsdoc';
 import preferArrowFunctions from 'eslint-plugin-prefer-arrow-functions';
 import globals from 'globals';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { FlatCompat } from '@eslint/eslintrc';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: eslint.configs.recommended,
-  allConfig: eslint.configs.all,
-  tsRecommendedConfig: tseslint.configs.recommended,
-  tsStylisticConfig: tseslint.configs.stylistic,
-  ngRecommendedConfig: angular.configs.tsRecommended,
-});
 
 export default defineConfig([
   globalIgnores(['projects/**/*']), {
@@ -228,6 +214,13 @@ export default defineConfig([
       'no-empty': ['off'],
       '@typescript-eslint/no-explicit-any': ['off'],
       '@typescript-eslint/no-unused-vars': ['off']
+    },
+  },
+  {
+    files: ['**/*.spec.ts'],
+    rules: {
+      'max-lines-per-function': 'off',
+      'max-statements': 'off',
     },
   },
   {

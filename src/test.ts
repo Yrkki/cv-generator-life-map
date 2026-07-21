@@ -17,37 +17,49 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   }
 }
 
+interface GlobalWithPlotly {
+  Plotly: typeof import('plotly.js') | null;
+  __PLOTLY_SOURCE: string | null;
+  __PLOTLY_VERSION: string | null;
+}
+
+const g = globalThis as unknown as GlobalWithPlotly;
+
 // Load Plotly from npm in the browser-like test environment.
 const loadPlotlyFromNpm = async () => {
   if (typeof window === 'undefined' || !('document' in window)) return null;
-  if ((window as any).Plotly) return (window as any).Plotly;
+  if (g.Plotly) return g.Plotly;
 
   const plotlyModule = await import('plotly.js/dist/plotly-geo.min.js');
-  const plotly = (plotlyModule as any).default ?? plotlyModule;
+  const plotly = plotlyModule.default;
   if (plotly) {
-    (window as any).Plotly = plotly;
+    g.Plotly = plotly;
   }
   return plotly;
 };
 
 const plotlyFromNpm = await loadPlotlyFromNpm();
-(globalThis as any).Plotly = plotlyFromNpm ?? null;
+g.Plotly = plotlyFromNpm ?? null;
 
 // Mark which Plotly implementation is active so tests / Playwright can detect it
-(globalThis as any).__PLOTLY_SOURCE = plotlyFromNpm ? 'npm' : null;
-(globalThis as any).__PLOTLY_VERSION = (plotlyFromNpm && (plotlyFromNpm as any).version) || null;
+g.__PLOTLY_SOURCE = plotlyFromNpm ? 'npm' : null;
+g.__PLOTLY_VERSION = (plotlyFromNpm && (plotlyFromNpm as unknown as { version: string }).version) || null;
 if (typeof console !== 'undefined' && console.info) {
-  console.info('[tests] Plotly source:', (globalThis as any).__PLOTLY_SOURCE, 'version:', (globalThis as any).__PLOTLY_VERSION);
+  console.info('[tests] Plotly source:', g.__PLOTLY_SOURCE, 'version:', g.__PLOTLY_VERSION);
 }
 
 // Instrument Plotly.plot to record whether a real plot call happened during tests.
 try {
-  const p = (globalThis as any).Plotly;
+  const p = g.Plotly;
   if (p) {
-    p._test_plotCalled = false;
-    const orig = p.plot;
-    p.plot = (...args: any[]) => {
-      try { p._test_plotCalled = true; } catch { }
+    (p as unknown as Record<string, unknown>)._test_plotCalled = false;
+    const orig = p.newPlot;
+    p.newPlot = (...args: Parameters<typeof p.newPlot>) => {
+      try {
+        (p as unknown as Record<string, unknown>)._test_plotCalled = true;
+      } catch (instrumentError) {
+        console.warn('[tests] Failed to set _test_plotCalled:', instrumentError);
+      }
       return orig?.apply(p, args);
     };
   }
