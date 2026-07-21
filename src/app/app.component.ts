@@ -1,4 +1,4 @@
-/* eslint-disable max-lines-per-function */
+ 
 import { Component, AfterViewInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 
 interface Country {
@@ -74,36 +74,6 @@ export class AppComponent implements AfterViewInit {
     void this.initPlotly();
   }
 
-  private async initPlotly() {
-    const plotly = await this.ensurePlotly();
-    if (!plotly) {
-      this.warn('[Plotly] Failed to load Plotly.');
-      return;
-    }
-
-    await this.main();
-  }
-
-  private async ensurePlotly() {
-    if (this.plotly) {
-      return this.plotly;
-    }
-
-    if (typeof document === 'undefined') {
-      return null;
-    }
-
-    try {
-      const plotlyModule = await import('plotly.js/dist/plotly-geo.min.js');
-      const plotly = (plotlyModule as any).default ?? (plotlyModule as any).Plotly ?? plotlyModule;
-      this.plotly = plotly;
-      return plotly;
-    } catch (error) {
-      this.warn('[Plotly] Failed to load Plotly:', error);
-      return null;
-    }
-  }
-
   public async main() {
     const plotly = this.plotly;
     if (!plotly) {
@@ -132,6 +102,36 @@ export class AppComponent implements AfterViewInit {
     const layout = this.layout;
     const plotFn = plotly.newPlot ?? plotly.plot;
     await plotFn(this.map.nativeElement, data, layout, { showLink: false });
+  }
+
+  private async initPlotly() {
+    const plotly = await this.ensurePlotly();
+    if (!plotly) {
+      this.warn('[Plotly] Failed to load Plotly.');
+      return;
+    }
+
+    await this.main();
+  }
+
+  private async ensurePlotly() {
+    if (this.plotly) {
+      return this.plotly;
+    }
+
+    if (typeof document === 'undefined') {
+      return null;
+    }
+
+    try {
+      const plotlyModule = await import('plotly.js/dist/plotly-geo.min.js');
+      const plotly = (plotlyModule as any).default ?? (plotlyModule as any).Plotly ?? plotlyModule;
+      this.plotly = plotly;
+      return plotly;
+    } catch (error) {
+      this.warn('[Plotly] Failed to load Plotly:', error);
+      return null;
+    }
   }
 
   private getData(rows: Countries) {
@@ -175,8 +175,6 @@ export class AppComponent implements AfterViewInit {
   }
 
   private warn(...data: any[]): void {
-    /* eslint-disable no-console */
     console.warn(data);
-    /* eslint-enable no-console */
   }
 }

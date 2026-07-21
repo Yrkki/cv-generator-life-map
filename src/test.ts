@@ -18,7 +18,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 }
 
 // Load Plotly from npm in the browser-like test environment.
-async function loadPlotlyFromNpm() {
+const loadPlotlyFromNpm = async () => {
   if (typeof window === 'undefined' || !('document' in window)) return null;
   if ((window as any).Plotly) return (window as any).Plotly;
 
@@ -28,7 +28,7 @@ async function loadPlotlyFromNpm() {
     (window as any).Plotly = plotly;
   }
   return plotly;
-}
+};
 
 const plotlyFromNpm = await loadPlotlyFromNpm();
 (globalThis as any).Plotly = plotlyFromNpm ?? null;
@@ -47,7 +47,7 @@ try {
     p._test_plotCalled = false;
     const orig = p.plot;
     p.plot = (...args: any[]) => {
-      try { p._test_plotCalled = true; } catch {}
+      try { p._test_plotCalled = true; } catch { }
       return orig?.apply(p, args);
     };
   }
@@ -60,8 +60,8 @@ try {
   getTestBed().initTestEnvironment(
     BrowserTestingModule,
     platformBrowserTesting(), {
-      teardown: { destroyAfterEach: false }
-    }
+    teardown: { destroyAfterEach: false }
+  }
   );
 } catch (e) {
   // Environment already initialized by another runner; ignore.

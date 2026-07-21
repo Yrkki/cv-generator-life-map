@@ -8,6 +8,6 @@
  * gives TypeScript a minimal module shape and does not change runtime behavior.
  */
 declare module 'plotly.js/dist/plotly-geo.min.js' {
-  const Plotly: any;
-  export default Plotly;
+  const plotly: any;
+  export default plotly;
 }

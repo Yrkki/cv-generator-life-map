@@ -1,4 +1,4 @@
-/* eslint-disable max-lines-per-function */
+ 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
