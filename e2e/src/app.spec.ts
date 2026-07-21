@@ -7,7 +7,7 @@ test.describe('workspace-project App', () => {
 
   let page: AppPage;
 
-  test.beforeEach(async ({ page: p }) => {
+  test.beforeEach(({ page: p }) => {
     page = new AppPage(p);
   });
 
@@ -23,6 +23,6 @@ test.describe('workspace-project App', () => {
 
   test('should have no severe browser errors', async () => {
     await page.navigateTo();
-    expect(await page.getBrowserErrors()).toHaveLength(0);
+    expect(page.getBrowserErrors()).toHaveLength(0);
   });
 });

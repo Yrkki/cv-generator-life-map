@@ -19,7 +19,7 @@ export class AppPage {
     return this.page.locator('app-root p').first().innerText();
   }
 
-  public async getBrowserErrors(): Promise<string[]> {
+  public getBrowserErrors(): string[] {
     return this.errors;
   }
 }

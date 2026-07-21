@@ -10,7 +10,7 @@ export default defineConfig({
 
   // Replaces: allScriptsTimeout: 11000
   use: {
-    baseURL: process.env['PLAYWRIGHT_TEST_BASE_URL'] ?? 'http://localhost:4200/',
+    baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL ?? 'http://localhost:4200/',
     actionTimeout: 11000,
 
     // Replaces: directConnect: true (no Selenium hub, direct browser)
