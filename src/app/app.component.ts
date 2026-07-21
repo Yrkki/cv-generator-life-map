@@ -114,12 +114,14 @@ export class AppComponent implements AfterViewInit {
     await this.main();
   }
 
+  protected hasDocument(): boolean { return typeof document !== 'undefined'; }
+
   private async ensurePlotly() {
     if (this.plotly) {
       return this.plotly;
     }
 
-    if (typeof document === 'undefined') {
+    if (!this.hasDocument()) {
       return null;
     }
 

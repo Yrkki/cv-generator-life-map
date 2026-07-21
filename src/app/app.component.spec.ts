@@ -141,6 +141,55 @@ describe('AppComponent', () => {
     expect(ver).toBeDefined();
   });
 
+  it('should use plot fallback when newPlot is unavailable', async () => {
+    const plotFn = vi.fn().mockResolvedValue(undefined);
+    component['plotly'] = { ...plotly, newPlot: undefined, plot: plotFn };
+    const mapElement = fixture.nativeElement.querySelector('#map');
+    (component as any).map = { nativeElement: mapElement };
+    await component.main();
+    expect(plotFn).toHaveBeenCalled();
+  });
+
+  it('should use import.meta.url as baseUrl when document.baseURI is empty', async () => {
+    component['plotly'] = plotly;
+    const mapElement = fixture.nativeElement.querySelector('#map');
+    (component as any).map = { nativeElement: mapElement };
+    Object.defineProperty(document, 'baseURI', { configurable: true, get: () => '' });
+    await component.main();
+    Object.defineProperty(document, 'baseURI', { configurable: true, get: () => location.href });
+    expect(fetchSpy).toHaveBeenCalledWith(expect.stringContaining('assets/countries.json'));
+  });
+
+  it('should warn when ensurePlotly import throws', async () => {
+    initPlotlySpy.mockRestore();
+    vi.spyOn(component as any, 'ensurePlotly').mockImplementationOnce(async () => {
+      component['warn']('[Plotly] Failed to load Plotly:', new Error('import failed'));
+      return null;
+    });
+    await component['initPlotly']();
+    expect(consoleWarnSpy).toHaveBeenCalledWith(expect.arrayContaining(['[Plotly] Failed to load Plotly:']));
+  });
+
+  it('should use plot fallback and warn when ensurePlotly catch runs', async () => {
+    initPlotlySpy.mockRestore();
+    vi.spyOn(component as any, 'ensurePlotly').mockImplementationOnce(async () => {
+      try { throw new Error('load error'); }
+      catch (error) {
+        component['warn']('[Plotly] Failed to load Plotly:', error);
+        return null;
+      }
+    });
+    await component['initPlotly']();
+    expect(consoleWarnSpy).toHaveBeenCalledWith(expect.arrayContaining(['[Plotly] Failed to load Plotly:']));
+  });
+
+  it('should return null from ensurePlotly when document is undefined', async () => {
+    vi.spyOn(component as any, 'hasDocument').mockReturnValue(false);
+    component['plotly'] = undefined;
+    const result = await component['ensurePlotly']();
+    expect(result).toBeNull();
+  });
+
   it('should plot data when Plotly and map are available', async () => {
     initPlotlySpy.mockRestore();
     component['plotly'] = plotly;
