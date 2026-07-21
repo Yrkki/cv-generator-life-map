@@ -122,16 +122,20 @@
           }
         },
         "e2e": {
-          "builder": "@angular/build:protractor",
+          "builder": "playwright-ng-schematics:playwright",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
+            "config": "e2e/playwright.config.ts",
             "devServerTarget": "cv-generator-life-map:serve"
           },
           "configurations": {
             "production": {
               "devServerTarget": "cv-generator-life-map:serve:production"
+            },
+            "development": {
+              "devServerTarget": "cv-generator-life-map:serve:development"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",

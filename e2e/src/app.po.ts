@@ -1,15 +1,25 @@
-import { browser, by, element } from 'protractor';
+import { Page } from '@playwright/test';
 
 export class AppPage {
-  public async navigateTo(): Promise<unknown> {
-    return browser.get(browser.baseUrl);
+  private readonly errors: string[] = [];
+
+  constructor(private readonly page: Page) {
+    this.page.on('console', msg => { if (msg.type() === 'error') this.errors.push(msg.text()); });
+  }
+
+  public async navigateTo(): Promise<void> {
+    await this.page.goto('/');
   }
 
   public async getTitleText(): Promise<string> {
-    return element.all(by.css('app-root h1')).first().getText();
+    return this.page.locator('app-root h1').first().innerText();
   }
 
   public async getParagraphText(): Promise<string> {
-    return element.all(by.css('app-root p')).first().getText();
+    return this.page.locator('app-root p').first().innerText();
+  }
+
+  public async getBrowserErrors(): Promise<string[]> {
+    return this.errors;
   }
 }
