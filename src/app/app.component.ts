@@ -74,7 +74,7 @@ export class AppComponent implements AfterViewInit {
   @HostListener('window:beforeprint', ['$event']) public onBeforePrint(_event: Event) { this.resize(); }
 
   public ngAfterViewInit() {
-    void this.initPlotly();
+    this.initPlotly();
   }
 
   public async main() {
