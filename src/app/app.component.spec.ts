@@ -34,7 +34,7 @@ describe('AppComponent', () => {
       }))
     );
     consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
-    initPlotlySpy = vi.spyOn(AppComponent.prototype as any, 'initPlotly').mockResolvedValue(undefined);
+    initPlotlySpy = vi.spyOn(AppComponent.prototype as unknown as any, 'initPlotly').mockResolvedValue(undefined);
 
     await TestBed.configureTestingModule({ imports: [AppComponent] });
     await TestBed.compileComponents();
@@ -85,18 +85,18 @@ describe('AppComponent', () => {
 
   describe('event handlers', () => {
     it('should check onResize', () => {
-      expect(() => component.onResize()).not.toThrow();
+      expect(() => { component.onResize(); }).not.toThrow();
       expect(typeof plotly.Plots.resize).toBe('function');
     });
 
     it('should check onBeforePrint', () => {
-      expect(() => component.onBeforePrint(new Event('print'))).not.toThrow();
+      expect(() => { component.onBeforePrint(new Event('print')); }).not.toThrow();
     });
 
     it('should resize Plotly when the map exists', () => {
       component['plotly'] = plotly;
       const resizeSpy = vi.spyOn(plotly.Plots, 'resize');
-      expect(() => component.onResize()).not.toThrow();
+      expect(() => { component.onResize(); }).not.toThrow();
       expect(resizeSpy).toHaveBeenCalled();
     });
   });

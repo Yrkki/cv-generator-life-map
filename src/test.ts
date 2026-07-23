@@ -45,7 +45,7 @@ g.Plotly = plotlyFromNpm ?? null;
 
 // Mark which Plotly implementation is active so tests / Playwright can detect it
 g.__PLOTLY_SOURCE = plotlyFromNpm ? 'npm' : null;
-g.__PLOTLY_VERSION = (plotlyFromNpm && (plotlyFromNpm['version'] as string)) || null;
+g.__PLOTLY_VERSION = (plotlyFromNpm && (plotlyFromNpm.version as string)) || null;
 if (typeof console !== 'undefined' && console.info) {
   console.info('[tests] Plotly source:', g.__PLOTLY_SOURCE, 'version:', g.__PLOTLY_VERSION);
 }
@@ -54,11 +54,11 @@ if (typeof console !== 'undefined' && console.info) {
 try {
   const p = g.Plotly;
   if (p) {
-    p['_test_plotCalled'] = false;
+    p._test_plotCalled = false;
     const orig = p.newPlot;
     p.newPlot = (...args: Parameters<typeof p.newPlot>) => {
       try {
-        p['_test_plotCalled'] = true;
+        p._test_plotCalled = true;
       } catch (instrumentError) {
         console.warn('[tests] Failed to set _test_plotCalled:', instrumentError);
       }
