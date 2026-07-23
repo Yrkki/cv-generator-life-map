@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "metadata": {
+    "source": "local",
+    "provider": null,
+    "organization": null,
+    "repositoryId": null,
+    "repositoryName": null,
+    "createdAt": "2026-07-23T17:32:50.075Z",
+    "updatedAt": "2026-07-23T17:32:50.075Z",
+    "languages": [
+      "HTML",
+      "JSON",
+      "Javascript",
+      "Markdown",
+      "SASS",
+      "TypeScript",
+      "XML",
+      "YAML"
+    ]
+  },
+  "tools": [
+    {
+      "toolId": "ESLint9",
+      "localConfigurationFile": "C:\\Users\\Jorich\\source\\repos\\cv-generator\\cv-generator-life-map\\eslint.config.mjs",
+      "useLocalConfigurationFile": true,
+      "patterns": []
+    }
+  ],
+  "exclude": []
+}
