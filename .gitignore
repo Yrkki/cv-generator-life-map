@@ -49,3 +49,7 @@ Thumbs.db
 
 # Artefacts
 newrelic_agent.log
+
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md
