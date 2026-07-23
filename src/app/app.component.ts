@@ -74,7 +74,7 @@ export class AppComponent implements AfterViewInit {
   @HostListener('window:beforeprint', ['$event']) public onBeforePrint(_event: Event) { this.resize(); }
 
   public ngAfterViewInit() {
-    this.initPlotly();
+    void this.initPlotly();
   }
 
   public async main() {
@@ -176,7 +176,7 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-  private warn(...data: any[]): void {
+  private warn(...data: unknown[]): void {
     console.warn(data);
   }
 }
