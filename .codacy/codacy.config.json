@@ -27,5 +27,7 @@
       "patterns": []
     }
   ],
-  "exclude": []
+  "exclude": [
+    "src/assets/icons/**"
+  ]
 }

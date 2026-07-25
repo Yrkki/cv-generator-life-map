@@ -50,6 +50,9 @@ Thumbs.db
 # Artefacts
 newrelic_agent.log
 
+# Nx plugins
+/.nx
+
 
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md
