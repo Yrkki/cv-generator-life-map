@@ -173,7 +173,7 @@
     "eslint-plugin-prefer-arrow-functions": "^3.10.2",
     "figlet": "^1.11.4",
     "figlet-cli": "^0.3.0",
-    "globals": "^17.9.0",
+    "globals": "^17.11.0",
     "jsdom": "^30.0.1",
     "karma-htmlfile-reporter": "^0.3.8",
     "lighthouse": "^13.4.1",
