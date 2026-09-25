@@ -168,7 +168,7 @@
     "@vitest/browser-playwright": "^4.1.11",
     "@vitest/coverage-istanbul": "^4.1.11",
     "angular-eslint": "22.5.0",
-    "auto-changelog": "2.6.1",
+    "auto-changelog": "2.7.0",
     "codecov": "^3.8.3",
     "conventional-changelog-angular": "^9.4.0",
     "coveralls": "3.1.1",
