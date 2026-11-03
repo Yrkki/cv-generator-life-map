@@ -183,7 +183,7 @@
     "codecov": "^3.8.3",
     "conventional-changelog-angular": "^9.4.0",
     "coveralls": "3.1.1",
-    "enhanced-resolve": "5.26.0",
+    "enhanced-resolve": "5.26.1",
     "eslint": "^10.14.0",
     "eslint-plugin-jsdoc": "65.4.2",
     "eslint-plugin-prefer-arrow-functions": "^3.10.2",
